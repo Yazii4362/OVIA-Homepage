@@ -5,163 +5,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OVIA Pharmaceuticals — Opening New Paths to Life</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/reset.css" />
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/header.css" />
 
   <style>
-    /* ─── Hero ─── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--gradient-frost);
-    }
-    .hero-blob-1 { width: 560px; height: 560px; top: -80px; right: -80px; }
-    .hero-blob-2 { width: 360px; height: 360px; bottom: -40px; left: -60px; animation-delay: -4s; }
+    /* ─── Layout Common (GC 스타일 모방) ─── */
+    section { padding-block: 140px; position: relative; overflow: hidden; }
+    .section-title { font-size: 64px; font-weight: 600; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; color: #121212; }
+    .section-desc { font-size: 20px; line-height: 1.6; color: var(--color-on-surface-variant); max-width: 600px; word-break: keep-all; }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding-top: var(--header-height);
-      padding-block: var(--space-30) var(--space-20);
-    }
+    /* 1. Hero */
+    .hero-v2 { height: 100vh; display: flex; align-items: center; background: #fff; padding-top: 80px; }
+    .hero-v2-title { font-size: clamp(3rem, 7.5vw, 100px); font-weight: 700; color: #121212; line-height: 1.05; }
+    .hero-v2-image { position: absolute; right: 0; top: 15%; width: 55%; height: 70%; background: #f4f4f4; border-radius: 60px 0 0 60px; z-index: 1; }
 
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: var(--type-label-sm);
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: var(--space-6);
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 20px;
-      height: 2px;
-      background: currentColor;
-      border-radius: 2px;
-    }
+    /* 2. R&D */
+    .rd-section { background: #f9f9f9; }
+    .rd-visual { position: absolute; right: -50px; top: 50%; transform: translateY(-50%); width: 700px; height: 700px; opacity: 0.15; z-index: 0; }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, var(--type-display-lg));
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--color-on-surface);
-      margin-bottom: var(--space-6);
-    }
-    .hero-title em {
-      font-style: italic;
-      background: var(--gradient-brand);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    /* 3. Product */
+    .product-section { background: linear-gradient(135deg, #FFEFBA 0%, #FFFFFF 100%); }
+    .product-display { margin-top: 80px; display: flex; gap: 60px; align-items: flex-end; }
+    .product-box-img { width: 480px; height: 360px; background: #fff; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
 
-    .hero-desc {
-      font-size: var(--type-body-lg);
-      color: var(--color-on-surface-variant);
-      max-width: 480px;
-      line-height: 1.75;
-      margin-bottom: var(--space-8);
-    }
+    /* 4. ESG */
+    .esg-section-v2 { background: #0F172A; color: #fff; min-height: 90vh; display: flex; align-items: center; }
+    .esg-bg-overlay { position: absolute; inset: 0; background: url('forest.jpg') no-repeat center/cover; opacity: 0.35; }
+    .esg-content { position: relative; z-index: 2; width: 100%; }
+    .esg-links-v2 { margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.2); }
+    .esg-item { font-size: 32px; font-weight: 600; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; cursor: pointer; transition: 0.3s; }
+    .esg-item:hover { color: #16A34A; }
 
-    .hero-actions {
-      display: flex;
-      gap: var(--space-3);
-      flex-wrap: wrap;
-      margin-bottom: var(--space-16);
-    }
+    /* 5. Newsroom */
+    .news-grid-v2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 80px; }
+    .news-card { border-radius: 24px; overflow: hidden; background: #fff; border: 1px solid #eee; }
+    .news-thumb { height: 260px; background: #f0f0f0; }
+    .news-info { padding: 32px; }
 
-    /* ─── Stats bar ─── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-8);
-      max-width: 480px;
-      padding-top: var(--space-8);
-      border-top: 1px solid var(--color-outline-variant);
-    }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: var(--type-headline-lg);
-      font-weight: 400;
-      color: var(--color-on-surface);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: var(--type-label-sm);
-      color: var(--color-on-surface-variant);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: var(--space-1);
-    }
+    /* 6. Contact Us */
+    .contact-section-v2 { background: linear-gradient(135deg, #D92D20 0%, #0F172A 100%); color: #fff; }
+    .contact-row { display: flex; justify-content: space-between; align-items: center; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 36px; font-weight: 700; cursor: pointer; }
   </style>
 </head>
 
 <body>
 
-<!-- ════════════ HEADER (gnb.js가 inject) ════════════ -->
 <div id="gnb-placeholder"></div>
 
-<!-- ════════════ HERO ════════════ -->
 <main>
-  <section class="hero">
-    <div class="bg-blob bg-blob--red hero-blob-1"></div>
-    <div class="bg-blob bg-blob--green hero-blob-2"></div>
+  <section class="hero-v2">
     <div class="container">
-      <div class="hero-content">
-        <p class="hero-eyebrow" data-animate>Global Pharmaceutical Innovation</p>
-        <h1 class="hero-title" data-animate data-animate-delay="1">
-          Opening<br/><em>New Paths</em><br/>to Life
-        </h1>
-        <p class="hero-desc" data-animate data-animate-delay="2">
-          OVIA는 혁신적인 신약 개발을 통해 전 세계 환자들에게 새로운 생명의 길을 열어갑니다.
-          생명공학의 가능성과 인류에 대한 헌신이 우리의 길을 이끕니다.
-        </p>
-        <div class="hero-actions" data-animate data-animate-delay="3">
-          <a href="#" class="btn btn-primary">파이프라인 보기</a>
-          <a href="#" class="btn btn-outline">회사소개</a>
-        </div>
-        <div class="stats-bar" data-animate data-animate-delay="3">
-          <div class="stat-item">
-            <div class="stat-num">32+</div>
-            <div class="stat-label">PIPELINE ASSETS</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">48</div>
-            <div class="stat-label">COUNTRIES</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">60yr</div>
-            <div class="stat-label">OF INNOVATION</div>
-          </div>
+      <h1 class="hero-v2-title">혁신을 이어갑니다.<br>건강한 세상을 넓혀갑니다.</h1>
+    </div>
+    <div class="hero-v2-image"></div>
+  </section>
+
+  <section class="rd-section">
+    <div class="container">
+      <h2 class="section-title">R&D</h2>
+      <p class="section-desc">혁신적인 연구개발 역량을 바탕으로 글로벌 신약 시장을 선도합니다.</p>
+    </div>
+    <div class="rd-visual"></div>
+  </section>
+
+  <section class="product-section">
+    <div class="container">
+      <h2 class="section-title">Product</h2>
+      <p class="section-desc">환자들에게 안전하고 효과적인 의약품을 제공합니다.</p>
+      <div class="product-display">
+        <div class="product-box-img"></div>
+        <div>
+          <h3 style="font-size: 32px; font-weight: 700;">지씨플루 쿼드리밸런트</h3>
+          <p style="font-size: 18px; margin-top: 10px;">프리필드시린지주</p>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="esg-section-v2">
+    <div class="esg-bg-overlay"></div>
+    <div class="container esg-content">
+      <h2 class="section-title">ESG</h2>
+      <p class="section-desc">지속가능한 미래를 위해 환경과 사회를 생각합니다.</p>
+      <div class="esg-links-v2">
+        <div class="esg-item"><span>Environmental</span> <span>+</span></div>
+        <div class="esg-item"><span>Social</span> <span>+</span></div>
+        <div class="esg-item"><span>Governance</span> <span>+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">Newsroom</h2>
+      <div class="news-grid-v2">
+        <div class="news-card"><div class="news-thumb"></div><div class="news-info"><h3>보도자료 1</h3></div></div>
+        <div class="news-card"><div class="news-thumb"></div><div class="news-info"><h3>보도자료 2</h3></div></div>
+        <div class="news-card"><div class="news-thumb"></div><div class="news-info"><h3>주가 정보</h3></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section-v2">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-row"><span>Careers</span> <span>→</span></div>
+      <div class="contact-row"><span>Inquiries</span> <span>→</span></div>
+    </div>
+  </section>
 </main>
 
-<!-- JS -->
 <script src="assets/js/gnb.js"></script>
 <script src="assets/js/header.js"></script>
 <script src="assets/js/main.js"></script>
-
-
 
 </body>
 </html>

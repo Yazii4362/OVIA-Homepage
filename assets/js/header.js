@@ -91,22 +91,16 @@
       const menu    = item.querySelector('.mega-menu');
       if (!trigger || !menu) return;
 
+      // 호버로만 동작하도록 키보드 이벤트는 Escape만 처리
       trigger.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const open = trigger.getAttribute('aria-expanded') === 'true';
-          trigger.setAttribute('aria-expanded', String(!open));
-        }
         if (e.key === 'Escape') {
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
+          trigger.blur();
         }
       });
 
       menu.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
+          trigger.blur();
         }
       });
     });

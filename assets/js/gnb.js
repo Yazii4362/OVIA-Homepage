@@ -87,14 +87,8 @@
 
   // ─── Build desktop GNB HTML ────────────────────────────────
   const buildDesktopGNB = () => {
-    return NAV.map(nav => {
+    const navButtons = NAV.map(nav => {
       const isActive = nav.id === activeId;
-      const menuItems = nav.items.map(item => `
-        <a href="${item.href}">
-          ${item.ko}
-          <span class="mega-menu__en">${item.en}</span>
-        </a>`).join('');
-
       return `
         <div class="gnb-item${isActive ? ' active' : ''}" data-nav="${nav.id}">
           <button class="gnb-trigger"
@@ -104,11 +98,27 @@
             ${nav.label}
             ${chevronSVG}
           </button>
-          <div class="mega-menu" id="menu-${nav.id}" role="menu">
-            ${menuItems}
-          </div>
         </div>`;
     }).join('');
+
+    const megaMenuColumns = NAV.map(nav => {
+      const menuItems = nav.items.map(item => `
+        <a href="${item.href}">${item.ko}</a>`).join('');
+
+      return `
+        <div class="mega-menu" id="menu-${nav.id}">
+          <div class="mega-menu-title">${nav.label}</div>
+          ${menuItems}
+        </div>`;
+    }).join('');
+
+    return `
+      ${navButtons}
+      <div class="mega-menu-backdrop">
+        <div class="mega-menu-container">
+          ${megaMenuColumns}
+        </div>
+      </div>`;
   };
 
   // ─── Build mobile menu HTML ────────────────────────────────
