@@ -1,0 +1,296 @@
+/* ═══════════════════════════════════════════════════════════════
+   GC Biopharma Layout Style for CI Page
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Global & Tokens ─── */
+:root {
+  --gc-max-width: 1200px;
+  --gc-gray-bg: #f8f9fa;
+  --gc-border: #e2e8f0;
+  --gc-text-dark: #111;
+  --gc-text-mid: #666;
+  --gc-red: var(--color-primary, #D92D20);
+  --gc-dark: var(--color-on-surface, #0F172A);
+  --gc-teal: var(--color-secondary, #16A34A);
+}
+
+body {
+  font-family: var(--font-body, 'Pretendard', sans-serif);
+  color: var(--gc-text-dark);
+  line-height: 1.6;
+  background-color: #fff;
+}
+
+/* ─── Sub Visual (Page Header) ─── */
+.sub-visual {
+  background-color: var(--gc-gray-bg);
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid var(--gc-border);
+  margin-bottom: 60px;
+}
+.sub-visual-inner {
+  max-width: var(--gc-max-width);
+  margin: 0 auto;
+}
+.sub-visual-title {
+  font-family: var(--font-display, 'Pretendard', sans-serif);
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--gc-text-dark);
+  letter-spacing: -0.02em;
+}
+.sub-visual-desc {
+  font-size: 16px;
+  color: var(--gc-text-mid);
+}
+
+/* ─── Main Wrap ─── */
+.gc-wrap {
+  max-width: var(--gc-max-width);
+  margin: 0 auto;
+  padding: 0 40px 100px;
+}
+
+/* ─── Intro Section ─── */
+.gc-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 60px;
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--gc-text-dark);
+}
+.gc-intro-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--gc-text-dark);
+  letter-spacing: -0.02em;
+}
+.gc-intro-text {
+  font-size: 18px;
+  color: var(--gc-text-mid);
+  line-height: 1.8;
+}
+.gc-intro-text strong {
+  color: var(--gc-text-dark);
+}
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gc-text-dark);
+  color: #fff;
+  padding: 16px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.btn-download:hover {
+  background: var(--gc-red);
+}
+.btn-download svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ─── Generic Section ─── */
+.gc-section {
+  margin-bottom: 80px;
+}
+.gc-sec-header {
+  display: flex;
+  margin-bottom: 32px;
+}
+.gc-sec-title {
+  width: 240px;
+  flex-shrink: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gc-text-dark);
+  letter-spacing: -0.01em;
+}
+.gc-sec-desc {
+  flex: 1;
+  font-size: 16px;
+  color: var(--gc-text-mid);
+  line-height: 1.7;
+}
+
+/* ─── Visual Box ─── */
+.gc-visual-box {
+  background: var(--gc-gray-bg);
+  border: 1px solid var(--gc-border);
+  padding: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gc-logo-large {
+  font-family: var(--font-display, serif);
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+.o-mark {
+  color: var(--gc-red);
+}
+.via-mark {
+  color: var(--gc-dark);
+}
+
+/* ─── Clear Space ─── */
+.gc-clearspace-box {
+  background: #fff;
+}
+.cs-guide {
+  position: relative;
+  display: inline-block;
+  padding: 40px;
+  border: 1px dashed rgba(217, 45, 32, 0.4);
+}
+.cs-logo {
+  font-family: var(--font-display, serif);
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1;
+}
+.cs-line {
+  position: absolute;
+  background: rgba(217, 45, 32, 0.2);
+}
+.cs-top, .cs-bottom {
+  height: 1px;
+  left: -20px;
+  right: -20px;
+}
+.cs-top { top: 0; }
+.cs-bottom { bottom: 0; }
+.cs-left, .cs-right {
+  width: 1px;
+  top: -20px;
+  bottom: -20px;
+}
+.cs-left { left: 0; }
+.cs-right { right: 0; }
+.cs-label {
+  position: absolute;
+  font-size: 14px;
+  color: var(--gc-red);
+  font-weight: 700;
+}
+.l-top { top: -30px; left: 50%; transform: translateX(-50%); }
+.l-bottom { bottom: -30px; left: 50%; transform: translateX(-50%); }
+.l-left { left: -30px; top: 50%; transform: translateY(-50%); }
+.l-right { right: -30px; top: 50%; transform: translateY(-50%); }
+
+/* ─── Color Symbolism ─── */
+.gc-color-sym {
+  list-style: none;
+  display: flex;
+  border-top: 1px solid var(--gc-border);
+}
+.gc-color-sym li {
+  flex: 1;
+  padding: 32px 0;
+  border-right: 1px solid var(--gc-border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.gc-color-sym li:last-child {
+  border-right: none;
+}
+.gc-color-sym li:first-child {
+  padding-left: 0;
+}
+.sym-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+.sym-info strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: var(--gc-text-dark);
+}
+.sym-info span {
+  font-size: 14px;
+  color: var(--gc-text-mid);
+}
+
+/* ─── Color List (Primary & Secondary) ─── */
+.gc-color-list {
+  display: flex;
+  gap: 24px;
+}
+.color-item {
+  flex: 1;
+  border: 1px solid var(--gc-border);
+}
+.color-swatch {
+  height: 180px;
+  width: 100%;
+}
+.color-details {
+  padding: 24px;
+  background: #fff;
+}
+.color-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--gc-text-dark);
+}
+.color-codes {
+  list-style: none;
+}
+.color-codes li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--gc-text-dark);
+}
+.color-codes li span {
+  color: var(--gc-text-mid);
+  width: 60px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gc-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .gc-sec-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .gc-sec-title {
+    width: auto;
+  }
+  .gc-color-sym {
+    flex-direction: column;
+    border-right: 1px solid var(--gc-border);
+    border-left: 1px solid var(--gc-border);
+  }
+  .gc-color-sym li {
+    border-right: none;
+    border-bottom: 1px solid var(--gc-border);
+    padding: 24px;
+  }
+  .gc-color-sym li:first-child {
+    padding-left: 24px;
+  }
+  .gc-color-list {
+    flex-direction: column;
+  }
+}

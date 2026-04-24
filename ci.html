@@ -1,1124 +1,238 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OVIA — Corporate Identity Guidelines</title>
-<!-- Google Fonts (영문 fallback) -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
-<!-- OVIA Design System -->
-<link rel="stylesheet" href="assets/css/variables.css" />
-<link rel="stylesheet" href="assets/css/reset.css" />
-<link rel="stylesheet" href="assets/css/global.css" />
-<link rel="stylesheet" href="assets/css/header.css" />
-<style>
-/* ═══════════════════════════════════════
-   TOKENS
-═══════════════════════════════════════ */
-:root {
-  /* ─ Design System 토큰 참조 ─ */
-  --red:    var(--color-primary);        /* #D92D20 Innovation Red */
-  --red-d:  var(--red-600);              /* #B42318 */
-  --red-10: var(--color-primary-container); /* #FFF1F0 */
-  --red-06: rgba(217,45,32,.06);
-  --teal:   var(--color-secondary);      /* #16A34A Vitality Green */
-  --teal-10:var(--color-secondary-container); /* #F0FDF4 */
-  --frost:  var(--color-background);     /* #F8FAFC */
-  --frost-2:var(--color-surface-variant);/* #F1F5F9 */
-  --frost-3:var(--color-surface-dim);    /* #E2E8F0 */
-  --dark:   var(--color-on-surface);     /* #0F172A */
-  --dark-2: var(--gray-700);             /* #334155 */
-  --dark-3: var(--gray-500);             /* #64748B */
-  --mid:    var(--color-on-surface-variant); /* #475569 */
-  --line:   var(--color-outline-variant);/* #E2E8F0 */
-  --white:  #FFFFFF;
-  --fd: var(--font-display);  /* LeeSunSinDotum, Cormorant Garamond */
-  --fb: var(--font-body);     /* ELandChoice, DM Sans */
-  --rlg: var(--shape-lg);  /* 16px */
-  --rmd: var(--shape-sm);  /* 8px */
-  --rsm: var(--shape-xs);  /* 4px */
-}
-
-/* ═══════════════════════════════════════
-   RESET
-═══════════════════════════════════════ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--fb);background:var(--frost);color:var(--dark);-webkit-font-smoothing:antialiased;}
-
-/* ═══════════════════════════════════════
-   GNB
-═══════════════════════════════════════ */
-.gnb{
-  position:sticky;top:0;z-index:200;
-  background:rgba(244,243,240,.9);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
-  height:64px;padding:0 60px;
-  display:flex;align-items:center;gap:36px;
-}
-.gnb-logo{
-  font-family:var(--fd);font-size:22px;font-weight:700;
-  letter-spacing:.18em;color:var(--dark);margin-right:auto;
-  display:flex;align-items:center;cursor:pointer;
-}
-.gnb-logo .o{color:var(--red);}
-.gnb-link{font-size:12px;letter-spacing:.04em;color:var(--mid);cursor:pointer;text-decoration:none;transition:color .2s;}
-.gnb-link:hover{color:var(--dark);}
-.gnb-link.active{color:var(--dark);font-weight:500;}
-.gnb-cta{
-  margin-left:8px;padding:8px 20px;
-  background:var(--red);color:#fff;border-radius:100px;
-  font-size:11px;font-weight:600;letter-spacing:.08em;cursor:pointer;
-  transition:background .2s;border:none;font-family:var(--fb);
-}
-.gnb-cta:hover{background:var(--red-d);}
-
-/* ═══════════════════════════════════════
-   SIDE PROGRESS
-═══════════════════════════════════════ */
-.side-nav{
-  position:fixed;right:28px;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:8px;z-index:100;
-}
-.sn-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--line);cursor:pointer;transition:all .25s;
-  position:relative;
-}
-.sn-dot::before{
-  content:attr(data-label);position:absolute;right:18px;top:50%;
-  transform:translateY(-50%);white-space:nowrap;
-  font-size:10px;color:var(--mid);letter-spacing:.06em;
-  opacity:0;pointer-events:none;transition:opacity .2s;
-  font-family:var(--fb);
-}
-.sn-dot:hover::before{opacity:1;}
-.sn-dot.active{background:var(--red);height:22px;border-radius:3px;}
-
-/* ═══════════════════════════════════════
-   LAYOUT
-═══════════════════════════════════════ */
-.wrap{max-width:1200px;margin:0 auto;padding:0 60px 120px;}
-
-/* ═══════════════════════════════════════
-   PAGE HERO
-═══════════════════════════════════════ */
-.hero{
-  padding:100px 0 72px;
-  display:grid;grid-template-columns:1fr auto;align-items:end;gap:60px;
-  border-bottom:1px solid var(--line);margin-bottom:0;
-  position:relative;overflow:hidden;
-}
-.hero::after{
-  content:'CI';font-family:var(--fd);font-size:340px;font-weight:700;
-  line-height:.85;color:rgba(200,55,45,.045);
-  position:absolute;right:-16px;bottom:-20px;pointer-events:none;letter-spacing:-.02em;
-}
-.hero-eyebrow{
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--red);font-weight:500;margin-bottom:18px;
-  display:flex;align-items:center;gap:10px;
-}
-.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--red);}
-.hero-title{
-  font-family:var(--fd);font-size:72px;font-weight:600;
-  line-height:.95;letter-spacing:-.02em;color:var(--dark);
-}
-.hero-title em{font-style:italic;color:var(--red);}
-.hero-right{position:relative;z-index:1;text-align:right;}
-.hero-desc{font-size:13px;color:var(--mid);line-height:1.75;max-width:280px;margin-left:auto;}
-.hero-meta{
-  margin-top:20px;display:flex;gap:24px;justify-content:flex-end;
-  font-size:11px;color:var(--line);
-}
-.hero-meta span{color:var(--mid);letter-spacing:.06em;}
-.hero-meta strong{color:var(--dark);}
-
-/* ═══════════════════════════════════════
-   SECTION BLOCK
-═══════════════════════════════════════ */
-.sec{margin-bottom:0;padding:80px 0 0;scroll-margin-top:80px;}
-
-.sec-head{
-  display:flex;align-items:baseline;gap:14px;
-  margin-bottom:48px;padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
-.sec-num{font-family:var(--fd);font-size:13px;color:var(--red);font-weight:600;letter-spacing:.08em;}
-.sec-title{font-family:var(--fd);font-size:32px;font-weight:600;color:var(--dark);letter-spacing:-.01em;}
-.sec-rule{flex:1;height:1px;background:transparent;} /* spacer */
-.sec-desc{font-size:12px;color:var(--mid);line-height:1.6;max-width:340px;margin-left:auto;text-align:right;}
-
-/* fade */
-.fu{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
-.fu.v{opacity:1;transform:none;}
-.fu.d1{transition-delay:.08s;}.fu.d2{transition-delay:.16s;}.fu.d3{transition-delay:.24s;}
-
-/* ═══════════════════════════════════════
-   SEC 01 — LOGO
-═══════════════════════════════════════ */
-.logo-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:3px;border-radius:var(--rlg);overflow:hidden;margin-bottom:3px;
-}
-.lc{
-  padding:52px 36px 36px;display:flex;flex-direction:column;gap:28px;
-  position:relative;min-height:256px;transition:transform .3s;cursor:default;
-}
-.lc:hover{transform:scale(1.012);z-index:2;}
-.lc-badge{
-  position:absolute;top:20px;right:20px;
-  font-size:9px;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 10px;border-radius:100px;font-weight:700;
-}
-.lc-tagline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.45;font-weight:400;}
-.lc-meta{margin-top:auto;}
-.lc-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
-.lc-use{font-size:11px;line-height:1.55;opacity:.5;}
-
-/* logotype */
-.ltype{display:flex;align-items:baseline;user-select:none;}
-.ltype-o{font-family:var(--fd);font-size:52px;font-weight:700;line-height:1;position:relative;}
-.ltype-o::after{
-  content:'';position:absolute;inset:3px 1px;
-  border-radius:50%;border:2px solid currentColor;opacity:.18;pointer-events:none;
-}
-.ltype-via{font-family:var(--fd);font-size:52px;font-weight:700;letter-spacing:.06em;line-height:1;}
-
-/* theme: frost */
-.lc-frost{background:var(--frost-2);}
-.lc-frost .ltype-o{color:var(--red);}
-.lc-frost .ltype-via{color:var(--dark);}
-.lc-frost .lc-badge{background:var(--red-10);color:var(--red);}
-.lc-frost .lc-tagline,.lc-frost .lc-name,.lc-frost .lc-use{color:var(--dark);}
-
-/* theme: dark */
-.lc-dark{background:var(--dark);}
-.lc-dark .ltype-o,.lc-dark .ltype-via{color:#fff;}
-.lc-dark .lc-badge{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);}
-.lc-dark .lc-tagline,.lc-dark .lc-name,.lc-dark .lc-use{color:#fff;}
-
-/* theme: red */
-.lc-red{background:var(--red);}
-.lc-red .ltype-o,.lc-red .ltype-via{color:#fff;}
-.lc-red .lc-badge{background:rgba(255,255,255,.2);color:rgba(255,255,255,.9);}
-.lc-red .lc-tagline,.lc-red .lc-name,.lc-red .lc-use{color:#fff;}
-
-/* clearspace */
-.cs-wrap{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-  background:var(--white);border-radius:var(--rlg);overflow:hidden;
-  margin-bottom:3px;border:1px solid var(--line);
-}
-.cs-visual{
-  display:flex;align-items:center;justify-content:center;
-  padding:56px;border-right:1px solid var(--line);position:relative;
-  background:var(--frost-2);
-}
-.cs-guide-h,.cs-guide-v{position:absolute;background:rgba(200,55,45,.1);}
-.cs-guide-h{height:1px;left:0;right:0;top:50%;}
-.cs-guide-v{width:1px;top:0;bottom:0;left:50%;}
-.cs-inner{
-  position:relative;display:inline-flex;align-items:baseline;
-}
-.cs-inner::before{
-  content:'';position:absolute;inset:-28px;
-  border:1.5px dashed rgba(200,55,45,.35);border-radius:4px;
-}
-.cs-dim{
-  position:absolute;font-size:9px;font-weight:700;
-  color:var(--red);letter-spacing:.06em;font-family:var(--fb);
-}
-.cs-dim.t{top:-40px;left:50%;transform:translateX(-50%);}
-.cs-dim.b{bottom:-40px;left:50%;transform:translateX(-50%);}
-.cs-dim.l{left:-44px;top:50%;transform:translateY(-50%) rotate(-90deg);}
-.cs-dim.r{right:-44px;top:50%;transform:translateY(-50%) rotate(90deg);}
-.cs-info{padding:48px;}
-.cs-info-title{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--dark);margin-bottom:20px;}
-.cs-rules{list-style:none;display:flex;flex-direction:column;gap:14px;}
-.cs-rules li{font-size:12px;color:var(--mid);line-height:1.65;display:flex;gap:10px;align-items:flex-start;}
-.cs-rules li::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:8px;}
-.cs-rules li strong{color:var(--dark);font-weight:600;}
-
-/* minsize */
-.ms-row{
-  background:var(--frost-2);border-radius:var(--rmd);padding:28px 36px;
-  display:flex;align-items:center;gap:40px;margin-bottom:3px;
-}
-.ms-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);white-space:nowrap;flex-shrink:0;}
-.ms-items{display:flex;align-items:center;gap:32px;flex:1;}
-.ms-item{display:flex;flex-direction:column;gap:6px;}
-.ms-logo{font-family:var(--fd);font-weight:700;color:var(--dark);letter-spacing:.04em;line-height:1;}
-.ms-logo .o{color:var(--red);}
-.ms-sz{font-size:10px;color:var(--mid);letter-spacing:.06em;}
-.ms-div{width:1px;height:36px;background:var(--line);}
-.ms-note{font-size:11px;color:var(--mid);line-height:1.6;flex:1;text-align:right;}
-.ms-note strong{color:var(--red);}
-
-/* donts */
-.donts-title{font-family:var(--fd);font-size:20px;font-weight:600;color:var(--dark);margin-bottom:20px;}
-.donts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:80px;}
-.dc{
-  background:var(--white);border-radius:var(--rmd);padding:28px 22px 20px;
-  position:relative;overflow:hidden;border:1px solid var(--line);
-}
-.dc::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,transparent 46%,rgba(200,55,45,.16) 46%,rgba(200,55,45,.16) 54%,transparent 54%),
-             linear-gradient(45deg, transparent 46%,rgba(200,55,45,.16) 46%,rgba(200,55,45,.16) 54%,transparent 54%);
-  pointer-events:none;
-}
-.dc::after{content:'✕';position:absolute;top:12px;right:14px;font-size:12px;color:var(--red);font-weight:700;}
-.dc-vis{display:flex;align-items:center;justify-content:center;height:64px;margin-bottom:16px;position:relative;z-index:1;}
-.dc-logo{font-family:var(--fd);font-weight:700;color:var(--dark);letter-spacing:.04em;line-height:1;pointer-events:none;user-select:none;}
-.dc-logo .o{color:var(--red);}
-.dc-lbl{font-size:11px;font-weight:700;color:var(--dark);margin-bottom:4px;position:relative;z-index:1;}
-.dc-sub{font-size:10px;color:var(--mid);line-height:1.5;position:relative;z-index:1;}
-.dc-stretch .dc-logo{transform:scaleX(1.55);}
-.dc-shadow  .dc-logo{text-shadow:4px 4px 10px rgba(0,0,0,.4);}
-.dc-outline .dc-logo{-webkit-text-stroke:1px var(--dark);color:transparent;}
-.dc-outline .dc-logo .o{-webkit-text-stroke:1px var(--red);color:transparent;}
-.dc-rot .dc-logo{transform:rotate(-14deg);}
-.dc-bg{background:linear-gradient(135deg,#7c3aed,#2563eb);border-color:transparent;}
-.dc-bg .dc-logo{color:#fff;}.dc-bg .dc-logo .o{color:#fbbf24;}
-.dc-bg .dc-lbl{color:#fff;}.dc-bg .dc-sub{color:rgba(255,255,255,.55);}
-
-/* ═══════════════════════════════════════
-   SEC 02 — COLOR
-═══════════════════════════════════════ */
-.pal-primary{
-  display:grid;grid-template-columns:2fr 1fr 1fr;
-  gap:3px;border-radius:var(--rlg);overflow:hidden;margin-bottom:3px;
-}
-.sw{
-  padding:40px 32px 32px;display:flex;flex-direction:column;justify-content:flex-end;
-  min-height:210px;position:relative;transition:transform .3s;cursor:default;
-}
-.sw:hover{transform:scale(1.012);z-index:2;}
-.sw-role{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;font-weight:500;margin-bottom:6px;}
-.sw-name{font-family:var(--fd);font-size:22px;font-weight:600;line-height:1.15;margin-bottom:16px;}
-.sw-codes{display:flex;gap:8px;flex-wrap:wrap;}
-.ctag{
-  font-size:10px;font-weight:500;letter-spacing:.03em;padding:4px 10px;
-  border-radius:6px;cursor:pointer;transition:opacity .15s;font-family:var(--fb);
-}
-.ctag:hover{opacity:.7;}
-.sw-red {background:var(--red);}  .sw-red  *{color:#fff;} .sw-red  .ctag{background:rgba(255,255,255,.15);}
-.sw-teal{background:var(--teal);} .sw-teal *{color:#fff;} .sw-teal .ctag{background:rgba(255,255,255,.15);}
-.sw-dark{background:var(--dark);} .sw-dark *{color:#fff;} .sw-dark .ctag{background:rgba(255,255,255,.12);}
-
-/* tints */
-.trow{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;border-radius:var(--rmd);overflow:hidden;margin-bottom:3px;}
-.tint{
-  padding:22px 18px 16px;min-height:100px;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  transition:transform .2s;cursor:default;
-}
-.tint:hover{transform:scale(1.05);z-index:2;}
-.tl{font-size:10px;font-weight:600;letter-spacing:.07em;margin-bottom:2px;}
-.th{font-size:10px;letter-spacing:.04em;}
-.tr1{background:#D92D20;} .tr1 .tl,.tr1 .th{color:#fff;}
-.tr2{background:#F04438;} .tr2 .tl,.tr2 .th{color:#fff;}
-.tr3{background:#FF6B61;} .tr3 .tl,.tr3 .th{color:#fff;}
-.tr4{background:#FFA49E;} .tr4 .tl,.tr4 .th{color:var(--dark-2);}
-.tr5{background:#FFD6D3;} .tr5 .tl,.tr5 .th{color:var(--dark-2);}
-.tr6{background:#FFF1F0;border:1px solid var(--frost-3);} .tr6 .tl,.tr6 .th{color:var(--dark-2);}
-.tt1{background:#16A34A;} .tt1 .tl,.tt1 .th{color:#fff;}
-.tt2{background:#22C55E;} .tt2 .tl,.tt2 .th{color:#fff;}
-.tt3{background:#6EE7A0;} .tt3 .tl,.tt3 .th{color:var(--dark-2);}
-.tt4{background:#BBF7D0;} .tt4 .tl,.tt4 .th{color:var(--dark-2);}
-.tt5{background:#DCFCE7;} .tt5 .tl,.tt5 .th{color:var(--dark-2);}
-.tt6{background:#F0FDF4;border:1px solid var(--frost-3);} .tt6 .tl,.tt6 .th{color:var(--dark-2);}
-.tn1{background:#0F172A;}  .tn1 .tl,.tn1 .th{color:#fff;}
-.tn2{background:#334155;}  .tn2 .tl,.tn2 .th{color:#fff;}
-.tn3{background:#64748B;}  .tn3 .tl,.tn3 .th{color:#fff;}
-.tn4{background:#E2E8F0;}  .tn4 .tl,.tn4 .th{color:var(--dark-2);}
-.tn5{background:#F1F5F9;}  .tn5 .tl,.tn5 .th{color:var(--dark-2);}
-.tn6{background:#F8FAFC;border:1px solid var(--frost-3);}  .tn6 .tl,.tn6 .th{color:var(--dark-2);}
-
-/* usage + contrast */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
-.info-card{background:var(--white);border-radius:var(--rmd);padding:32px;border:1px solid var(--line);}
-.ic-title{
-  font-family:var(--fd);font-size:18px;font-weight:600;color:var(--dark);
-  margin-bottom:18px;display:flex;align-items:center;gap:10px;
-}
-.ic-title .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.dot-red{background:var(--red);} .dot-teal{background:var(--teal);}
-.rule-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.rule-list li{
-  font-size:12px;color:var(--mid);line-height:1.6;
-  display:flex;gap:10px;align-items:flex-start;
-  padding-bottom:10px;border-bottom:1px solid var(--frost-3);
-}
-.rule-list li:last-child{border-bottom:none;padding-bottom:0;}
-.rule-list li::before{content:'';width:3px;height:3px;border-radius:50%;flex-shrink:0;margin-top:8px;}
-.rl-red li::before{background:var(--red);}
-.rl-teal li::before{background:var(--teal);}
-.rule-list li strong{color:var(--dark);font-weight:600;}
-
-/* contrast */
-.contrast-card{background:var(--white);border-radius:var(--rmd);padding:32px;border:1px solid var(--line);margin-bottom:12px;}
-.cc-title{font-family:var(--fd);font-size:18px;font-weight:600;color:var(--dark);margin-bottom:6px;}
-.cc-note{font-size:11px;color:var(--mid);margin-bottom:24px;}
-.cc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.cci{border-radius:var(--rsm);overflow:hidden;border:1px solid var(--line);}
-.cci-pre{padding:20px;display:flex;flex-direction:column;gap:4px;min-height:80px;align-items:flex-start;justify-content:center;}
-.cci-name{font-family:var(--fd);font-size:20px;font-weight:600;}
-.cci-sub{font-size:10px;opacity:.6;}
-.cci-foot{padding:10px 14px;background:var(--frost-2);display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.cci-lbl{font-size:9px;color:var(--mid);letter-spacing:.05em;}
-.cci-ratio{font-size:10px;font-weight:700;color:var(--dark);}
-.badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;letter-spacing:.06em;}
-.pass{background:rgba(45,138,122,.15);color:var(--teal);}
-.fail{background:rgba(200,55,45,.12);color:var(--red);}
-.ci1{background:var(--red);} .ci1 .cci-name,.ci1 .cci-sub{color:#fff;}
-.ci2{background:var(--dark);} .ci2 .cci-name,.ci2 .cci-sub{color:#fff;}
-.ci3{background:var(--frost);} .ci3 .cci-name{color:var(--red);} .ci3 .cci-sub{color:var(--mid);}
-.ci4{background:#16A34A;} .ci4 .cci-name,.ci4 .cci-sub{color:#fff;}
-
-/* combos */
-.combo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:80px;}
-.combo{border-radius:var(--rmd);overflow:hidden;border:1px solid var(--line);}
-.combo-pre{
-  height:150px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:8px;padding:24px;
-}
-.combo-ey{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;font-weight:500;}
-.combo-txt{font-family:var(--fd);font-size:30px;font-weight:600;line-height:1;}
-.combo-btn{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:100px;font-weight:600;margin-top:4px;}
-.combo-ft{padding:14px 18px;background:var(--frost-2);font-size:11px;color:var(--mid);line-height:1.5;}
-.combo-ft strong{color:var(--dark);font-weight:600;}
-.cb1{background:var(--frost);} .cb1 .combo-ey,.cb1 .combo-txt{color:var(--dark);} .cb1 .combo-btn{background:var(--red);color:#fff;}
-.cb2{background:var(--dark);} .cb2 .combo-ey{color:rgba(255,255,255,.4);} .cb2 .combo-txt{color:#fff;} .cb2 .combo-btn{background:var(--red);color:#fff;}
-.cb3{background:var(--red);}  .cb3 .combo-ey{color:rgba(255,255,255,.5);} .cb3 .combo-txt{color:#fff;} .cb3 .combo-btn{background:#fff;color:var(--red);}
-
-/* ═══════════════════════════════════════
-   SEC 03 — TYPOGRAPHY
-═══════════════════════════════════════ */
-.type-hero{
-  background:var(--dark);border-radius:var(--rlg);
-  padding:64px 60px;margin-bottom:3px;
-  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;
-  overflow:hidden;position:relative;
-}
-.type-hero::after{
-  content:'Aa';font-family:var(--fd);font-size:320px;font-weight:700;
-  color:rgba(255,255,255,.04);position:absolute;right:-20px;bottom:-60px;line-height:1;
-  pointer-events:none;
-}
-.th-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;font-weight:500;}
-.th-sample{
-  font-family:var(--fd);font-size:80px;font-weight:600;
-  line-height:.9;letter-spacing:-.02em;color:#fff;position:relative;z-index:1;
-}
-.th-sample em{font-style:italic;color:var(--red);}
-.th-meta{position:relative;z-index:1;text-align:right;}
-.th-meta-name{font-family:var(--fd);font-size:18px;font-weight:600;color:#fff;margin-bottom:4px;}
-.th-meta-sub{font-size:11px;color:rgba(255,255,255,.35);line-height:1.6;}
-
-/* type scale */
-.type-scale{
-  background:var(--white);border-radius:var(--rlg);
-  border:1px solid var(--line);overflow:hidden;margin-bottom:3px;
-}
-.ts-row{
-  display:grid;grid-template-columns:140px 1fr 160px;
-  align-items:center;padding:24px 40px;
-  border-bottom:1px solid var(--frost-3);gap:24px;
-  transition:background .2s;
-}
-.ts-row:last-child{border-bottom:none;}
-.ts-row:hover{background:var(--frost);}
-.ts-meta{display:flex;flex-direction:column;gap:4px;}
-.ts-role{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
-.ts-size{font-size:10px;color:var(--line);letter-spacing:.06em;}
-.ts-sample{font-family:var(--fd);color:var(--dark);line-height:1.1;}
-.ts-sample.d1{font-size:60px;font-weight:600;letter-spacing:-.02em;}
-.ts-sample.d2{font-size:48px;font-weight:600;letter-spacing:-.015em;}
-.ts-sample.d3{font-size:36px;font-weight:600;letter-spacing:-.01em;}
-.ts-sample.h1{font-size:28px;font-weight:600;}
-.ts-sample.h2{font-size:22px;font-weight:600;}
-.ts-sample.h3{font-size:18px;font-weight:600;}
-.ts-sample.bd{font-family:var(--fb);font-size:15px;font-weight:400;color:var(--mid);line-height:1.65;}
-.ts-sample.sm{font-family:var(--fb);font-size:12px;color:var(--mid);}
-.ts-sample.cp{font-family:var(--fb);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);}
-.ts-sample em{font-style:italic;color:var(--red);}
-.ts-spec{font-size:10px;color:var(--mid);line-height:1.8;text-align:right;}
-.ts-spec strong{color:var(--dark-2);font-weight:600;display:block;font-size:11px;margin-bottom:2px;}
-
-/* font cards */
-.font-cards{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px;}
-.fc{padding:44px;position:relative;overflow:hidden;}
-.fc-frost{background:var(--frost-2);}
-.fc-dark{background:var(--dark);}
-.fc-specimen{
-  font-size:88px;line-height:.9;font-weight:600;letter-spacing:-.02em;
-  margin-bottom:28px;opacity:.9;
-}
-.fc-frost .fc-specimen{font-family:var(--fd);color:var(--dark);}
-.fc-dark  .fc-specimen{font-family:var(--fb);color:#fff;font-weight:300;font-size:72px;}
-.fc-name{font-size:13px;font-weight:600;letter-spacing:.08em;margin-bottom:6px;}
-.fc-frost .fc-name{color:var(--dark);}
-.fc-dark  .fc-name{color:#fff;}
-.fc-role{font-size:11px;line-height:1.6;opacity:.45;}
-.fc-frost .fc-role{color:var(--dark);}
-.fc-dark  .fc-role{color:#fff;}
-.fc-weights{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;}
-.fc-w{font-size:11px;padding:4px 12px;border-radius:6px;}
-.fc-frost .fc-w{background:rgba(0,0,0,.06);color:var(--dark);}
-.fc-dark  .fc-w{background:rgba(255,255,255,.1);color:#fff;}
-
-/* ko type note */
-.ko-note{
-  background:var(--red-10);border:1px solid rgba(200,55,45,.15);
-  border-radius:var(--rmd);padding:24px 32px;
-  display:flex;gap:16px;align-items:flex-start;margin-bottom:80px;
-}
-.ko-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
-.ko-text{font-size:12px;color:var(--dark-2);line-height:1.7;}
-.ko-text strong{color:var(--red);font-weight:700;}
-.ko-samples{display:flex;gap:24px;margin-top:12px;flex-wrap:wrap;}
-.ko-s{display:flex;flex-direction:column;gap:4px;}
-.ko-s-name{font-size:10px;color:var(--mid);letter-spacing:.06em;}
-.ko-s-text{font-size:14px;color:var(--dark);}
-
-/* ═══════════════════════════════════════
-   SEC 04 — DOWNLOAD
-═══════════════════════════════════════ */
-.dl-hero{
-  background:var(--dark);border-radius:var(--rlg);
-  padding:60px;margin-bottom:16px;
-  display:flex;align-items:center;justify-content:space-between;gap:40px;
-  position:relative;overflow:hidden;
-}
-.dl-hero::after{
-  content:'↓';font-size:320px;color:rgba(255,255,255,.03);
-  position:absolute;right:40px;top:-40px;line-height:1;
-  font-family:var(--fb);pointer-events:none;
-}
-.dl-hero-title{font-family:var(--fd);font-size:42px;font-weight:600;color:#fff;line-height:1.05;margin-bottom:8px;}
-.dl-hero-title em{font-style:italic;color:var(--red);}
-.dl-hero-sub{font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;max-width:380px;}
-.dl-hero-right{position:relative;z-index:1;flex-shrink:0;}
-.dl-cta-group{display:flex;flex-direction:column;gap:10px;}
-.dl-btn{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 24px;border-radius:var(--rsm);
-  font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;
-  transition:all .2s;border:none;font-family:var(--fb);min-width:220px;
-}
-.dl-btn .dl-ico{font-size:16px;flex-shrink:0;}
-.dl-btn .dl-info{display:flex;flex-direction:column;gap:1px;text-align:left;}
-.dl-btn .dl-info span{font-size:9px;opacity:.55;font-weight:400;letter-spacing:.06em;}
-.dl-btn.primary{background:var(--red);color:#fff;}
-.dl-btn.primary:hover{background:var(--red-d);}
-.dl-btn.secondary{background:rgba(255,255,255,.08);color:#fff;}
-.dl-btn.secondary:hover{background:rgba(255,255,255,.14);}
-
-/* download cards */
-.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
-.dlc{
-  background:var(--white);border:1px solid var(--line);
-  border-radius:var(--rmd);padding:32px;
-  display:flex;flex-direction:column;gap:16px;
-  transition:border-color .2s,transform .2s;cursor:pointer;
-}
-.dlc:hover{border-color:var(--red);transform:translateY(-3px);}
-.dlc-icon{
-  width:48px;height:48px;border-radius:var(--rsm);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
-}
-.dlc-icon.r{background:var(--red-10);}
-.dlc-icon.t{background:var(--teal-10);}
-.dlc-icon.d{background:rgba(0,0,0,.05);}
-.dlc-title{font-family:var(--fd);font-size:18px;font-weight:600;color:var(--dark);}
-.dlc-desc{font-size:11px;color:var(--mid);line-height:1.6;flex:1;}
-.dlc-foot{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:16px;border-top:1px solid var(--frost-3);
-}
-.dlc-format{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);font-weight:600;}
-.dlc-dl{
-  display:flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:600;color:var(--red);letter-spacing:.06em;
-  cursor:pointer;transition:gap .2s;background:none;border:none;font-family:var(--fb);
-}
-.dlc-dl:hover{gap:10px;}
-.dlc-dl svg{width:12px;height:12px;stroke:var(--red);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-
-/* contact strip */
-.contact-strip{
-  background:var(--red);border-radius:var(--rlg);
-  padding:48px 60px;
-  display:flex;align-items:center;justify-content:space-between;gap:40px;
-  margin-bottom:60px;
-}
-.cs-text{}
-.cs-title{font-family:var(--fd);font-size:32px;font-weight:600;color:#fff;margin-bottom:6px;}
-.cs-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;}
-.cs-actions{display:flex;gap:12px;flex-shrink:0;}
-.cs-btn{
-  padding:14px 28px;border-radius:100px;
-  font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;
-  transition:all .2s;border:none;font-family:var(--fb);
-}
-.cs-btn.w{background:#fff;color:var(--red);}
-.cs-btn.w:hover{background:var(--frost);}
-.cs-btn.o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
-.cs-btn.o:hover{border-color:#fff;}
-
-/* ═══════════════════════════════════════
-   SECTION DIVIDER
-═══════════════════════════════════════ */
-.sec-div{
-  height:1px;background:var(--line);
-  margin:0 0 0;
-}
-
-/* ═══════════════════════════════════════
-   TOAST
-═══════════════════════════════════════ */
-.toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);
-  background:var(--dark);color:#fff;padding:10px 20px;border-radius:100px;
-  font-size:12px;letter-spacing:.04em;opacity:0;transition:all .28s;
-  pointer-events:none;z-index:9999;font-family:var(--fb);white-space:nowrap;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* ═══════════════════════════════════════
-   FOOTER (mini)
-═══════════════════════════════════════ */
-.mini-footer{
-  border-top:1px solid var(--line);padding:28px 0;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:11px;color:var(--mid);
-}
-.mini-footer .mf-logo{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--dark);letter-spacing:.14em;}
-.mini-footer .mf-logo .o{color:var(--red);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OVIA — Corporate Identity Guidelines</title>
+  <!-- Google Fonts (영문 fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+    rel="stylesheet" />
+  <!-- OVIA Design System -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/header.css" />
+  <link rel="stylesheet" href="assets/css/ci.css" />
 </head>
+
 <body>
+  <!-- GNB -->
+  <div id="gnb-placeholder"></div>
 
-<!-- GNB (공통 — gnb.js inject) -->
-<div id="gnb-placeholder"></div>
-
-<!-- SIDE NAV -->
-<nav class="side-nav">
-  <div class="sn-dot active" data-label="Logo System"  data-sec="s01"></div>
-  <div class="sn-dot"        data-label="Color System" data-sec="s02"></div>
-  <div class="sn-dot"        data-label="Typography"   data-sec="s03"></div>
-  <div class="sn-dot"        data-label="Download"     data-sec="s04"></div>
-</nav>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<div class="wrap">
-
-  <!-- ─── HERO ─── -->
-  <header class="hero fu">
-    <div>
-      <div class="hero-eyebrow">Brand Identity Guidelines</div>
-      <h1 class="hero-title">Corporate<br><em>Identity</em></h1>
+  <!-- Page Header (GC Style) -->
+  <div class="sub-visual">
+    <div class="sub-visual-inner">
+      <h2 class="sub-visual-title">CI</h2>
+      <p class="sub-visual-desc">OVIA의 기업 아이덴티티를 소개합니다.</p>
     </div>
-    <div class="hero-right">
-      <p class="hero-desc">OVIA의 브랜드 아이덴티티는 'O'가 상징하는 포용력과 'VIA'가 의미하는 길(Path)에서 출발합니다. 이 가이드를 통해 어떤 매체에서도 일관된 OVIA 브랜드 경험을 전달하세요.</p>
-      <div class="hero-meta">
-        <span>Version <strong>2.1</strong></span>
-        <span>Updated <strong>2025</strong></span>
-        <span>Sections <strong>04</strong></span>
-      </div>
-    </div>
-  </header>
-
-  <!-- ═══════════════════════════
-       01 LOGO SYSTEM
-  ═══════════════════════════ -->
-  <section class="sec" id="s01">
-    <div class="sec-head">
-      <span class="sec-num">01</span>
-      <h2 class="sec-title">Logo System</h2>
-      <div class="sec-rule"></div>
-      <p class="sec-desc">OVIA 로고는 브랜드의 핵심 자산입니다. 승인된 버전과 규정을 준수하여 사용하세요.</p>
-    </div>
-
-    <!-- Logo Variants -->
-    <div class="logo-grid fu">
-      <div class="lc lc-frost">
-        <div class="lc-badge">Primary</div>
-        <div class="ltype"><span class="ltype-o">O</span><span class="ltype-via">VIA</span></div>
-        <div class="lc-tagline">Opening Paths to Life</div>
-        <div class="lc-meta">
-          <div class="lc-name">Color Version</div>
-          <div class="lc-use">밝은 배경 · 기본 사용 버전<br>웹 · 인쇄물 · 명함</div>
-        </div>
-      </div>
-      <div class="lc lc-dark">
-        <div class="lc-badge">Dark BG</div>
-        <div class="ltype"><span class="ltype-o">O</span><span class="ltype-via">VIA</span></div>
-        <div class="lc-tagline">Opening Paths to Life</div>
-        <div class="lc-meta">
-          <div class="lc-name">Reversed Version</div>
-          <div class="lc-use">어두운 배경 전용<br>다크 UI · 영상 오프닝</div>
-        </div>
-      </div>
-      <div class="lc lc-red">
-        <div class="lc-badge">Brand BG</div>
-        <div class="ltype"><span class="ltype-o">O</span><span class="ltype-via">VIA</span></div>
-        <div class="lc-tagline">Opening Paths to Life</div>
-        <div class="lc-meta">
-          <div class="lc-name">Brand Color Version</div>
-          <div class="lc-use">Red 배경 전용<br>캠페인 키 비주얼 · 패키지</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Clearspace -->
-    <div class="cs-wrap fu d1">
-      <div class="cs-visual">
-        <div class="cs-guide-h"></div>
-        <div class="cs-guide-v"></div>
-        <div class="cs-inner">
-          <span class="cs-dim t">x</span>
-          <span class="cs-dim b">x</span>
-          <span class="cs-dim l">x</span>
-          <span class="cs-dim r">x</span>
-          <div class="ltype" style="font-size:40px;">
-            <span class="ltype-o" style="color:var(--red);">O</span>
-            <span class="ltype-via" style="color:var(--dark);">VIA</span>
-          </div>
-        </div>
-      </div>
-      <div class="cs-info">
-        <h3 class="cs-info-title">Clearspace Rule</h3>
-        <ul class="cs-rules">
-          <li>사방에 <strong>'O'의 높이(x)</strong>만큼 여백 확보 — 다른 요소가 이 영역을 침범하면 안 됩니다.</li>
-          <li>인쇄물에서는 <strong>최소 1.5x 이상</strong>의 여백을 권장합니다.</li>
-          <li>배경 이미지 위에 사용 시 <strong>충분한 명도 대비</strong>가 확보된 영역에만 배치하세요.</li>
-          <li>슬로건은 로고와 <strong>함께 사용하거나 로고 단독</strong>으로 사용하세요. 슬로건 단독은 금지입니다.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Min Size -->
-    <div class="ms-row fu d2">
-      <div class="ms-lbl">Minimum Size</div>
-      <div class="ms-items">
-        <div class="ms-item">
-          <div class="ms-logo" style="font-size:28px;"><span class="o">O</span>VIA</div>
-          <div class="ms-sz">Print — 18mm</div>
-        </div>
-        <div class="ms-div"></div>
-        <div class="ms-item">
-          <div class="ms-logo" style="font-size:20px;"><span class="o">O</span>VIA</div>
-          <div class="ms-sz">Digital — 80px</div>
-        </div>
-        <div class="ms-div"></div>
-        <div class="ms-item">
-          <div class="ms-logo" style="font-size:14px;"><span class="o">O</span>VIA</div>
-          <div class="ms-sz">Favicon — 32px</div>
-        </div>
-      </div>
-      <div class="ms-note">이 크기 이하에서는 <strong>로고 사용을 금지</strong>합니다.</div>
-    </div>
-
-    <!-- Don'ts -->
-    <div class="fu d3">
-      <h3 class="donts-title">Logo Don'ts — 사용 금지 사례</h3>
-      <div class="donts-grid">
-        <div class="dc">
-          <div class="dc-vis"><div class="dc-logo dc-stretch" style="font-size:26px;"><span class="o">O</span>VIA</div></div>
-          <div class="dc-lbl">비율 변형 금지</div>
-          <div class="dc-sub">로고를 가로/세로로 늘이거나 압축하지 마세요</div>
-        </div>
-        <div class="dc">
-          <div class="dc-vis"><div class="dc-logo dc-shadow" style="font-size:26px;"><span class="o">O</span>VIA</div></div>
-          <div class="dc-lbl">효과 추가 금지</div>
-          <div class="dc-sub">그림자·글로우·엠보싱 효과를 추가하지 마세요</div>
-        </div>
-        <div class="dc">
-          <div class="dc-vis"><div class="dc-logo dc-outline" style="font-size:26px;"><span class="o">O</span>VIA</div></div>
-          <div class="dc-lbl">외곽선 버전 금지</div>
-          <div class="dc-sub">아웃라인(외곽선) 형태로 사용하지 마세요</div>
-        </div>
-        <div class="dc dc-bg">
-          <div class="dc-vis"><div class="dc-logo" style="font-size:26px;"><span class="o">O</span>VIA</div></div>
-          <div class="dc-lbl">비공인 배경색 금지</div>
-          <div class="dc-sub">브랜드 컬러 외의 배경에 임의 배치하지 마세요</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       02 COLOR SYSTEM
-  ═══════════════════════════ -->
-  <section class="sec" id="s02">
-    <div class="sec-head">
-      <span class="sec-num">02</span>
-      <h2 class="sec-title">Color System</h2>
-      <div class="sec-rule"></div>
-      <p class="sec-desc">색상은 OVIA의 감성과 목적을 전달하는 핵심 도구입니다. 용도에 따라 정확히 적용하세요.</p>
-    </div>
-
-    <div class="pal-primary fu">
-      <div class="sw sw-red">
-        <div class="sw-role">Primary — Innovation Red</div>
-        <div class="sw-name">생명의 에너지,<br>혁신의 의지</div>
-        <div class="sw-codes">
-          <span class="ctag" data-copy="#D92D20">#D92D20</span>
-          <span class="ctag" data-copy="rgb(217,45,32)">RGB 217·45·32</span>
-          <span class="ctag" data-copy="Pantone 485 C">P 485 C</span>
-        </div>
-      </div>
-      <div class="sw sw-teal">
-        <div class="sw-role">Secondary — Vitality Green</div>
-        <div class="sw-name">생명의<br>안전망</div>
-        <div class="sw-codes">
-          <span class="ctag" data-copy="#16A34A">#16A34A</span>
-          <span class="ctag" data-copy="rgb(22,163,74)">RGB 22·163·74</span>
-          <span class="ctag" data-copy="Pantone 7739 C">P 7739 C</span>
-        </div>
-      </div>
-      <div class="sw sw-dark">
-        <div class="sw-role">Neutral — Cool Gray</div>
-        <div class="sw-name">신뢰와<br>깊이</div>
-        <div class="sw-codes">
-          <span class="ctag" data-copy="#0F172A">#0F172A</span>
-          <span class="ctag" data-copy="rgb(15,23,42)">RGB 15·23·42</span>
-          <span class="ctag" data-copy="Pantone 533 C">P 533 C</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="trow fu d1" style="margin-top:3px;">
-      <div class="tint tr1"><div class="tl">Red-500</div><div class="th">#D92D20</div></div>
-      <div class="tint tr2"><div class="tl">Red-400</div><div class="th">#F04438</div></div>
-      <div class="tint tr3"><div class="tl">Red-300</div><div class="th">#FF6B61</div></div>
-      <div class="tint tr4"><div class="tl">Red-200</div><div class="th">#FFA49E</div></div>
-      <div class="tint tr5"><div class="tl">Red-100</div><div class="th">#FFD6D3</div></div>
-      <div class="tint tr6"><div class="tl">Red-50</div><div class="th">#FFF1F0</div></div>
-    </div>
-    <div class="trow fu d1" style="margin-top:3px;">
-      <div class="tint tt1"><div class="tl">Green-500</div><div class="th">#16A34A</div></div>
-      <div class="tint tt2"><div class="tl">Green-400</div><div class="th">#22C55E</div></div>
-      <div class="tint tt3"><div class="tl">Green-300</div><div class="th">#6EE7A0</div></div>
-      <div class="tint tt4"><div class="tl">Green-200</div><div class="th">#BBF7D0</div></div>
-      <div class="tint tt5"><div class="tl">Green-100</div><div class="th">#DCFCE7</div></div>
-      <div class="tint tt6"><div class="tl">Green-50</div><div class="th">#F0FDF4</div></div>
-    </div>
-    <div class="trow fu d1" style="margin-top:3px;margin-bottom:32px;">
-      <div class="tint tn1"><div class="tl">Gray-900</div><div class="th">#0F172A</div></div>
-      <div class="tint tn2"><div class="tl">Gray-700</div><div class="th">#334155</div></div>
-      <div class="tint tn3"><div class="tl">Gray-500</div><div class="th">#64748B</div></div>
-      <div class="tint tn4"><div class="tl">Gray-200</div><div class="th">#E2E8F0</div></div>
-      <div class="tint tn5"><div class="tl">Gray-100</div><div class="th">#F1F5F9</div></div>
-      <div class="tint tn6"><div class="tl">Gray-50</div><div class="th">#F8FAFC</div></div>
-    </div>
-
-    <div class="two-col fu d2">
-      <div class="info-card">
-        <div class="ic-title"><span class="dot dot-red"></span>Innovation Red — 사용 지침</div>
-        <ul class="rule-list rl-red">
-          <li><strong>Primary CTA 버튼</strong> — 가장 중요한 행동 유도 요소에만 사용</li>
-          <li><strong>신약 파이프라인 승인 단계</strong> 및 핵심 임상 성공 지표 강조</li>
-          <li><strong>Hero 헤드라인</strong> 일부 강조 또는 키 비주얼 포인트</li>
-          <li>동일 화면에서 Red 요소 <strong>3개 초과 금지</strong></li>
-        </ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-title"><span class="dot dot-teal"></span>Vitality Teal — 사용 지침</div>
-        <ul class="rule-list rl-teal">
-          <li><strong>Patient Support</strong> 섹션 전반의 주조색</li>
-          <li><strong>ESG / Sustainability</strong> — 안전·생명·환경 맥락에 활용</li>
-          <li><strong>Success / Positive 상태</strong> 표시 (임상 성공, 목표 달성)</li>
-          <li>HCP 전용 섹션의 <strong>게이팅 배지</strong> 색상</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="contrast-card fu d2">
-      <div class="cc-title">Accessibility — Contrast Ratio</div>
-      <div class="cc-note">WCAG 2.1 AA 기준 준수 · 일반 텍스트 최소 4.5:1 / 대형 텍스트(18pt+) 최소 3:1</div>
-      <div class="cc-grid">
-        <div class="cci"><div class="cci-pre ci1"><div class="cci-name">OVIA</div><div class="cci-sub">White on Red</div></div><div class="cci-foot"><div class="cci-lbl">White / #D92D20</div><div class="cci-ratio">5.1:1</div><div class="badge pass">AA ✓</div></div></div>
-        <div class="cci"><div class="cci-pre ci2"><div class="cci-name">OVIA</div><div class="cci-sub">White on Gray-900</div></div><div class="cci-foot"><div class="cci-lbl">White / #0F172A</div><div class="cci-ratio">18.1:1</div><div class="badge pass">AAA ✓</div></div></div>
-        <div class="cci"><div class="cci-pre ci3"><div class="cci-name">OVIA</div><div class="cci-sub">Red on Gray-50</div></div><div class="cci-foot"><div class="cci-lbl">Red / #F8FAFC</div><div class="cci-ratio">5.3:1</div><div class="badge pass">AA ✓</div></div></div>
-        <div class="cci"><div class="cci-pre ci4"><div class="cci-name">OVIA</div><div class="cci-sub">White on Green</div></div><div class="cci-foot"><div class="cci-lbl">White / #16A34A</div><div class="cci-ratio">4.5:1</div><div class="badge pass">AA ✓</div></div></div>
-      </div>
-    </div>
-
-    <div class="combo-grid fu d3" style="margin-top:12px;">
-      <div class="combo"><div class="combo-pre cb1"><div class="combo-ey">Default Theme</div><div class="combo-txt">Opening Paths</div><div class="combo-btn">시작하기</div></div><div class="combo-ft"><strong>Frost + Charcoal + Red CTA</strong><br>웹 기본 · 인쇄물 · 브로셔</div></div>
-      <div class="combo"><div class="combo-pre cb2"><div class="combo-ey">Dark Theme</div><div class="combo-txt">Opening Paths</div><div class="combo-btn">시작하기</div></div><div class="combo-ft"><strong>Charcoal + White + Red CTA</strong><br>IR 섹션 · 기술 페이지 · 영상</div></div>
-      <div class="combo"><div class="combo-pre cb3"><div class="combo-ey">Brand Theme</div><div class="combo-txt">Opening Paths</div><div class="combo-btn">자세히 보기</div></div><div class="combo-ft"><strong>Red BG + White + White CTA</strong><br>캠페인 키 비주얼 · Hero 배너</div></div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       03 TYPOGRAPHY
-  ═══════════════════════════ -->
-  <section class="sec" id="s03">
-    <div class="sec-head">
-      <span class="sec-num">03</span>
-      <h2 class="sec-title">Typography</h2>
-      <div class="sec-rule"></div>
-      <p class="sec-desc">두 서체의 대비가 OVIA의 감성과 정보 전달력을 동시에 완성합니다.</p>
-    </div>
-
-    <!-- Font Hero -->
-    <div class="type-hero fu">
-      <div>
-        <div class="th-eyebrow">Display Typeface</div>
-        <div class="th-sample">생명의 길을<br><em>잇다</em></div>
-      </div>
-      <div class="th-meta">
-        <div class="th-meta-name">LeeSunSinDotum</div>
-        <div class="th-meta-sub">Display · Heading · Accent<br>한글 전용 · 세리프 계열</div>
-      </div>
-    </div>
-
-    <!-- Type Scale -->
-    <div class="type-scale fu d1">
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Display LG</div><div class="ts-size">57px / -2.5%</div></div>
-        <div class="ts-sample d1">생명의 <em>길</em>을 잇다</div>
-        <div class="ts-spec"><strong>LeeSunSinDotum</strong>Weight 400 · LS -2.5% · LH 1.12</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Display MD</div><div class="ts-size">45px / -2%</div></div>
-        <div class="ts-sample d2">Corporate <em>Identity</em></div>
-        <div class="ts-spec"><strong>LeeSunSinDotum</strong>Weight 400 · LS -2% · LH 1.15</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Headline LG</div><div class="ts-size">32px / -1%</div></div>
-        <div class="ts-sample d3">Pipeline Overview</div>
-        <div class="ts-spec"><strong>LeeSunSinDotum</strong>Weight 400 · LS -1% · LH 1.25</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Headline MD</div><div class="ts-size">28px / 0</div></div>
-        <div class="ts-sample h1">Research Areas</div>
-        <div class="ts-spec"><strong>LeeSunSinDotum</strong>Weight 400 · LS 0 · LH 1.3</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Headline SM</div><div class="ts-size">24px / 0</div></div>
-        <div class="ts-sample h2">Investor Relations</div>
-        <div class="ts-spec"><strong>LeeSunSinDotum</strong>Weight 400 · LS 0 · LH 1.35</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Title LG</div><div class="ts-size">22px / +1%</div></div>
-        <div class="ts-sample h3">Patient Support Program</div>
-        <div class="ts-spec"><strong>ELandChoice</strong>Weight 500 · LS +1% · LH 1.4</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Body LG</div><div class="ts-size">16px / 0</div></div>
-        <div class="ts-sample bd">OVIA는 혁신적인 신약 개발을 통해 더 많은 환자에게 새로운 생명의 길을 열어갑니다. 우리의 연구는 과학에 근거하며, 모든 결정의 중심에는 환자가 있습니다.</div>
-        <div class="ts-spec"><strong>ELandChoice</strong>Weight 400 · LS 0 · LH 1.6</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Body SM</div><div class="ts-size">12px / 0</div></div>
-        <div class="ts-sample sm">임상시험 참여 전 반드시 의료 전문가와 상담하시기 바랍니다.</div>
-        <div class="ts-spec"><strong>ELandChoice</strong>Weight 400 · LS 0 · LH 1.5</div>
-      </div>
-      <div class="ts-row">
-        <div class="ts-meta"><div class="ts-role">Label SM</div><div class="ts-size">11px / +10%</div></div>
-        <div class="ts-sample cp">Phase III Clinical Trial · Updated 2025 · OVIA Pharmaceuticals</div>
-        <div class="ts-spec"><strong>ELandChoice</strong>Weight 500 · LS +10% · LH 1.3</div>
-      </div>
-    </div>
-
-    <!-- Font Cards -->
-    <div class="font-cards fu d2" style="margin-top:3px;">
-      <div class="fc fc-frost">
-        <div class="fc-specimen">AaBbCc<br>가나다라</div>
-        <div class="fc-name">LEESUNSIN DOTUM</div>
-        <div class="fc-role">Display · Heading · Accent<br>브랜드 감성, 권위, 신뢰를 표현하는 한글 세리프 서체</div>
-        <div class="fc-weights">
-          <span class="fc-w" style="font-family:var(--fd);font-weight:400;">Regular</span>
-        </div>
-      </div>
-      <div class="fc fc-dark">
-        <div class="fc-specimen">AaBbCc<br>가나다라</div>
-        <div class="fc-name">ELAND CHOICE</div>
-        <div class="fc-role">Body · UI · Caption<br>가독성과 현대성을 제공하는 한글 산세리프 서체</div>
-        <div class="fc-weights">
-          <span class="fc-w" style="font-family:var(--fb);font-weight:300;">Light</span>
-          <span class="fc-w" style="font-family:var(--fb);font-weight:500;">Medium</span>
-          <span class="fc-w" style="font-family:var(--fb);font-weight:700;">Bold</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Korean Type Note -->
-    <div class="ko-note fu d3">
-      <div class="ko-icon">🇰🇷</div>
-      <div class="ko-text">
-        <strong>한국어 타이포그래피 지침</strong><br>
-        OVIA 디자인 시스템은 <strong>LeeSunSinDotum</strong> (Display/Heading)과 <strong>ELandChoice</strong> (Body/UI) 두 한글 전용 서체를 사용합니다. 영문 fallback으로 Cormorant Garamond와 DM Sans가 적용됩니다. 국·영문 혼용 시 행간 1.6 이상, 자간 −1% 이내를 권장합니다.
-        <div class="ko-samples">
-          <div class="ko-s">
-            <div class="ko-s-name">LeeSunSinDotum — 헤딩/강조</div>
-            <div class="ko-s-text" style="font-family:var(--fd);">생명의 길을 잇다</div>
-          </div>
-          <div class="ko-s">
-            <div class="ko-s-name">ELandChoice — 본문/UI</div>
-            <div class="ko-s-text" style="font-family:var(--fb);">생명의 길을 잇다</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       04 DOWNLOAD
-  ═══════════════════════════ -->
-  <section class="sec" id="s04">
-    <div class="sec-head">
-      <span class="sec-num">04</span>
-      <h2 class="sec-title">Download</h2>
-      <div class="sec-rule"></div>
-      <p class="sec-desc">승인된 에셋만 사용하세요. 미승인 변형 파일 사용은 브랜드 가이드라인 위반입니다.</p>
-    </div>
-
-    <div class="dl-hero fu">
-      <div>
-        <div class="dl-hero-title">브랜드 에셋<br><em>다운로드</em></div>
-        <div class="dl-hero-sub">로고 파일 · CI 가이드라인 PDF · 컬러 스와치 · 서체 라이선스를 한 번에 받으세요. 내부 사용 전용이며 외부 공유는 브랜드팀 승인 후 가능합니다.</div>
-      </div>
-      <div class="dl-hero-right">
-        <div class="dl-cta-group">
-          <button class="dl-btn primary" onclick="showToast('전체 에셋 패키지 다운로드 중...')">
-            <span class="dl-ico">📦</span>
-            <div class="dl-info">전체 에셋 패키지 <span>ZIP · 48MB · v2.1</span></div>
-          </button>
-          <button class="dl-btn secondary" onclick="showToast('CI 가이드라인 PDF 다운로드 중...')">
-            <span class="dl-ico">📄</span>
-            <div class="dl-info">CI 가이드라인 PDF <span>PDF · 12MB · 한/EN</span></div>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="dl-grid fu d1">
-      <div class="dlc">
-        <div class="dlc-icon r">🔴</div>
-        <div class="dlc-title">Logo Package</div>
-        <div class="dlc-desc">SVG · AI · EPS · PNG 포함. Color · Reversed · Brand BG 3가지 버전 모두 포함됩니다.</div>
-        <div class="dlc-foot">
-          <span class="dlc-format">SVG · AI · PNG</span>
-          <button class="dlc-dl" onclick="showToast('Logo Package 다운로드')">Download <svg viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3"/><path d="M1 11h10"/></svg></button>
-        </div>
-      </div>
-      <div class="dlc">
-        <div class="dlc-icon t">🎨</div>
-        <div class="dlc-title">Color Swatches</div>
-        <div class="dlc-desc">Figma 변수 JSON · ASE · ACO 포함. Innovation Red · Vitality Teal · Neutral 전 스케일.</div>
-        <div class="dlc-foot">
-          <span class="dlc-format">ASE · JSON · ACO</span>
-          <button class="dlc-dl" onclick="showToast('Color Swatches 다운로드')">Download <svg viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3"/><path d="M1 11h10"/></svg></button>
-        </div>
-      </div>
-      <div class="dlc">
-        <div class="dlc-icon d">🔤</div>
-        <div class="dlc-title">Typography Kit</div>
-        <div class="dlc-desc">LeeSunSinDotum · ELandChoice 웹폰트 파일(WOFF) 및 Figma 텍스트 스타일 JSON 포함. 영문 fallback 서체 포함.</div>
-        <div class="dlc-foot">
-          <span class="dlc-format">WOFF · JSON</span>
-          <button class="dlc-dl" onclick="showToast('Typography Kit 다운로드')">Download <svg viewBox="0 0 12 12"><path d="M6 1v7M2 8l4 3 4-3"/><path d="M1 11h10"/></svg></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-strip fu d2">
-      <div class="cs-text">
-        <div class="cs-title">브랜드팀에 문의하세요</div>
-        <div class="cs-sub">가이드라인에 명시되지 않은 사용 사례나 외부 공유 승인이 필요한 경우 브랜드팀에 직접 문의하세요.</div>
-      </div>
-      <div class="cs-actions">
-        <button class="cs-btn w">이메일 문의</button>
-        <button class="cs-btn o">가이드 피드백</button>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-  <div class="mini-footer">
-    <div class="mf-logo"><span class="o">O</span>VIA</div>
-    <span>Corporate Identity Guidelines v2.1 · © 2025 OVIA Pharmaceuticals. All rights reserved.</span>
-    <span>Brand Team · brand@ovia.com</span>
   </div>
 
-</div><!-- /wrap -->
+  <div class="gc-wrap">
+    
+    <!-- Intro -->
+    <div class="gc-intro">
+      <div class="gc-intro-content">
+        <h3 class="gc-intro-title">OVIA의 CI를 소개합니다.</h3>
+        <p class="gc-intro-text">
+          혁신과 열정을 상징하는 <strong>Innovation Red</strong>와<br>
+          생명과 치유의 미래를 상징하는 <strong>Vitality Teal</strong>의 결합은<br>
+          건강산업의 글로벌 리더로 도약하는 OVIA의 역동적인 모습을 상징합니다.
+        </p>
+      </div>
+      <div class="gc-intro-action">
+        <a href="#" class="btn-download">
+          CI 다운로드
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        </a>
+      </div>
+    </div>
 
-<script>
-/* ── Fade Up ── */
-const fus = document.querySelectorAll('.fu');
-const io = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => {
-    if(e.isIntersecting){
-      const delay = e.target.classList.contains('d3') ? 240 :
-                    e.target.classList.contains('d2') ? 160 :
-                    e.target.classList.contains('d1') ? 80 : 0;
-      setTimeout(() => e.target.classList.add('v'), delay);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.07 });
-fus.forEach(el => io.observe(el));
-setTimeout(() => {
-  fus.forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('v');
-  });
-}, 60);
+    <!-- Symbol Mark -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">심벌마크</h3>
+        <p class="gc-sec-desc">
+          인류에 대한 헌신을 다짐하며 끊임없는 열정과 역동적 리더십을 바탕으로 전 세계 인류가 보다 건강한 삶을 영위할 수 있도록 혁신적인 솔루션을 창출하겠다는 OVIA의 의지를 투영하고 있습니다.
+        </p>
+      </div>
+      <div class="gc-visual-box">
+        <div class="gc-logo-large">
+          <span class="o-mark">O</span>
+        </div>
+      </div>
+    </div>
 
-/* ── Side Nav ── */
-const dots = document.querySelectorAll('.sn-dot');
-const secs = ['s01','s02','s03','s04'].map(id => document.getElementById(id)).filter(Boolean);
+    <!-- Logotype -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">로고타입</h3>
+        <p class="gc-sec-desc">
+          OVIA의 로고타입은 건강산업의 글로벌 리더로서 정직과 신뢰를 나타내는 다크 색상이 사용되었고 이는 전문성을 강조하는 브랜드의 목소리(Voice)를 글자형식으로 표현한 것입니다.
+        </p>
+      </div>
+      <div class="gc-visual-box">
+        <div class="gc-logo-large">
+          <span class="o-mark">O</span><span class="via-mark">VIA</span>
+        </div>
+      </div>
+    </div>
 
-const secIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      dots.forEach(d => d.classList.remove('active'));
-      const i = secs.indexOf(e.target);
-      if(dots[i]) dots[i].classList.add('active');
-    }
-  });
-}, { rootMargin:'-40% 0px -40% 0px' });
-secs.forEach(s => secIO.observe(s));
+    <!-- Clear Space -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">공간규정</h3>
+        <p class="gc-sec-desc">
+          로고를 적용할 때, 로고 주위에는 최소한의 빈 공간을 확보하여 로고가 시각적으로 명확하게 표현되도록 해야 합니다.
+        </p>
+      </div>
+      <div class="gc-visual-box gc-clearspace-box">
+        <div class="cs-guide">
+          <div class="cs-logo">
+            <span class="o-mark">O</span><span class="via-mark">VIA</span>
+          </div>
+          <div class="cs-line cs-top"></div>
+          <div class="cs-line cs-bottom"></div>
+          <div class="cs-line cs-left"></div>
+          <div class="cs-line cs-right"></div>
+          <span class="cs-label l-top">x</span>
+          <span class="cs-label l-bottom">x</span>
+          <span class="cs-label l-left">x</span>
+          <span class="cs-label l-right">x</span>
+        </div>
+      </div>
+    </div>
 
-dots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    const el = document.getElementById(dot.dataset.sec);
-    if(el) el.scrollIntoView({ behavior:'smooth' });
-  });
-});
+    <!-- Color Symbolism -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">컬러상징</h3>
+        <p class="gc-sec-desc">
+          컬러는 시각적으로 정확하게 브랜드를 식별함에 있어 가장 기본적인 요소이므로 반드시 표준 가이드라인에 의거하여 사용되어야 합니다.
+        </p>
+      </div>
+      <ul class="gc-color-sym">
+        <li>
+          <div class="sym-color" style="background: var(--red);"></div>
+          <div class="sym-info">
+            <strong>RED</strong>
+            <span>혁신과 열정의 의지</span>
+          </div>
+        </li>
+        <li>
+          <div class="sym-color" style="background: var(--teal);"></div>
+          <div class="sym-info">
+            <strong>TEAL</strong>
+            <span>생명과 치유의 미래</span>
+          </div>
+        </li>
+        <li>
+          <div class="sym-color" style="background: var(--dark);"></div>
+          <div class="sym-info">
+            <strong>DARK</strong>
+            <span>글로벌 리더로서의 정직과 신뢰</span>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-/* ── Copy Tags ── */
-const toast = document.getElementById('toast');
-let tt;
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(tt);
-  tt = setTimeout(() => toast.classList.remove('show'), 2000);
-}
+    <!-- Primary Colors -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">기본색</h3>
+      </div>
+      <div class="gc-color-list">
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #D92D20;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Red</h4>
+            <ul class="color-codes">
+              <li><span>Pantone</span> 485 C</li>
+              <li><span>RGB</span> 217 / 45 / 32</li>
+              <li><span>CMYK</span> 5 / 95 / 100 / 0</li>
+              <li><span>HEX</span> #D92D20</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #16A34A;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Teal</h4>
+            <ul class="color-codes">
+              <li><span>Pantone</span> 347 C</li>
+              <li><span>RGB</span> 22 / 163 / 74</li>
+              <li><span>CMYK</span> 85 / 0 / 90 / 0</li>
+              <li><span>HEX</span> #16A34A</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #0F172A;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Dark</h4>
+            <ul class="color-codes">
+              <li><span>Pantone</span> 533 C</li>
+              <li><span>RGB</span> 15 / 23 / 42</li>
+              <li><span>CMYK</span> 80 / 60 / 40 / 60</li>
+              <li><span>HEX</span> #0F172A</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-document.querySelectorAll('.ctag').forEach(tag => {
-  tag.addEventListener('click', () => {
-    navigator.clipboard.writeText(tag.dataset.copy).then(() => {
-      showToast(`"${tag.dataset.copy}" 클립보드 복사됨`);
-    }).catch(() => showToast(tag.dataset.copy));
-  });
-});
-</script>
-<script src="assets/js/gnb.js"></script>
-<script src="assets/js/header.js"></script>
+    <!-- Secondary Colors -->
+    <div class="gc-section">
+      <div class="gc-sec-header">
+        <h3 class="gc-sec-title">보조색</h3>
+      </div>
+      <div class="gc-color-list secondary-list">
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #F04438;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Mild Red</h4>
+            <ul class="color-codes">
+              <li><span>RGB</span> 240 / 68 / 56</li>
+              <li><span>HEX</span> #F04438</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #F8FAFC; border: 1px solid #E2E8F0;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Light Gray</h4>
+            <ul class="color-codes">
+              <li><span>RGB</span> 248 / 250 / 252</li>
+              <li><span>HEX</span> #F8FAFC</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Color Item -->
+        <div class="color-item">
+          <div class="color-swatch" style="background: #334155;"></div>
+          <div class="color-details">
+            <h4 class="color-name">OVIA Cool Gray</h4>
+            <ul class="color-codes">
+              <li><span>RGB</span> 51 / 65 / 85</li>
+              <li><span>HEX</span> #334155</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.gc-wrap -->
+
+  <script src="assets/js/gnb.js"></script>
+  <script src="assets/js/header.js"></script>
 </body>
+
 </html>
