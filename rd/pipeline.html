@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipeline — OVIA Pharmaceuticals</title>
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/reset.css" />
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="../assets/css/header.css" />
+  <link rel="stylesheet" href="../assets/css/page.css" />
+  <link rel="stylesheet" href="../assets/css/pipeline.css" />
+</head>
+<body>
+  <div id="gnb-placeholder"></div>
+
+  <div class="sub-visual">
+    <div class="sub-visual-inner">
+      <p class="sub-visual-eyebrow">R&D</p>
+      <h1 class="sub-visual-title">Pipeline</h1>
+      <p class="sub-visual-desc">OVIA의 38개 파이프라인 현황을 한눈에 확인하세요.</p>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- Filter Bar -->
+    <div class="pipeline-filters" role="group" aria-label="파이프라인 필터">
+      <button class="pf-btn active" data-filter="all">전체</button>
+      <button class="pf-btn" data-filter="oncology">Oncology</button>
+      <button class="pf-btn" data-filter="rare">Rare Disease</button>
+      <button class="pf-btn" data-filter="infectious">Infectious Disease</button>
+      <button class="pf-btn" data-filter="cns">CNS</button>
+    </div>
+
+    <!-- ⭐ Interactive Pipeline Chart -->
+    <section class="page-section pipeline-section">
+
+      <!-- Stage Header -->
+      <div class="pipeline-stage-header" aria-hidden="true">
+        <div class="psh-name">후보물질</div>
+        <div class="psh-stages">
+          <span>Discovery</span>
+          <span>Pre-clinical</span>
+          <span>Phase I</span>
+          <span>Phase II</span>
+          <span>Phase III</span>
+          <span>Approved</span>
+        </div>
+      </div>
+
+      <!-- Pipeline Rows -->
+      <div class="pipeline-list" id="pipeline-list">
+
+        <!-- Oncology -->
+        <div class="pl-row" data-category="oncology" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-201</span>
+            <span class="pl-indication">비소세포폐암 (NSCLC)</span>
+            <span class="tag tag--red">Oncology</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="3" aria-label="Phase I 진행 중">
+              <div class="pl-progress" style="--stage:3"></div>
+              <div class="pl-stage-dot active" style="--pos:3" aria-current="true"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov201">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov201" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>EGFR 변이 표적 3세대 TKI</p></div>
+            <div><strong>임상 단계</strong><p>Phase I — 용량 증량 연구 진행 중</p></div>
+            <div><strong>예상 일정</strong><p>Phase II 진입 2026 Q3</p></div>
+            <div><strong>파트너</strong><p>단독 개발</p></div>
+          </div>
+        </div>
+
+        <div class="pl-row" data-category="oncology" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-305</span>
+            <span class="pl-indication">삼중음성유방암 (TNBC)</span>
+            <span class="tag tag--red">Oncology</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="4" aria-label="Phase II 진행 중">
+              <div class="pl-progress" style="--stage:4"></div>
+              <div class="pl-stage-dot active" style="--pos:4"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov305">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov305" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>HER2 표적 ADC (항체-약물 접합체)</p></div>
+            <div><strong>임상 단계</strong><p>Phase II — 다기관 무작위 배정 연구</p></div>
+            <div><strong>예상 일정</strong><p>Phase III 진입 2027 Q1</p></div>
+            <div><strong>파트너</strong><p>글로벌 빅파마 A사 공동 개발</p></div>
+          </div>
+        </div>
+
+        <div class="pl-row" data-category="oncology" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-412</span>
+            <span class="pl-indication">급성골수성백혈병 (AML)</span>
+            <span class="tag tag--red">Oncology</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="2" aria-label="Pre-clinical 진행 중">
+              <div class="pl-progress" style="--stage:2"></div>
+              <div class="pl-stage-dot active" style="--pos:2"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov412">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov412" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>FLT3 변이 표적 CAR-T 세포치료제</p></div>
+            <div><strong>임상 단계</strong><p>Pre-clinical — IND 신청 준비 중</p></div>
+            <div><strong>예상 일정</strong><p>IND 신청 2025 Q4</p></div>
+            <div><strong>파트너</strong><p>단독 개발</p></div>
+          </div>
+        </div>
+
+        <!-- Rare Disease -->
+        <div class="pl-row" data-category="rare" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-501</span>
+            <span class="pl-indication">파브리병 (Fabry Disease)</span>
+            <span class="tag tag--teal">Rare Disease</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="5" aria-label="Phase III 진행 중">
+              <div class="pl-progress" style="--stage:5"></div>
+              <div class="pl-stage-dot active" style="--pos:5"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov501">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov501" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>α-갈락토시다아제 A 효소 대체 요법</p></div>
+            <div><strong>임상 단계</strong><p>Phase III — 글로벌 피벗 연구 진행 중</p></div>
+            <div><strong>예상 일정</strong><p>허가 신청 2026 Q2</p></div>
+            <div><strong>파트너</strong><p>유럽 희귀질환 전문사 B사</p></div>
+          </div>
+        </div>
+
+        <!-- Infectious Disease -->
+        <div class="pl-row" data-category="infectious" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-601</span>
+            <span class="pl-indication">RSV 백신 (성인)</span>
+            <span class="tag tag--gray">Infectious</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="4" aria-label="Phase II 진행 중">
+              <div class="pl-progress" style="--stage:4"></div>
+              <div class="pl-stage-dot active" style="--pos:4"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov601">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov601" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>mRNA 기반 RSV F 단백질 발현 백신</p></div>
+            <div><strong>임상 단계</strong><p>Phase II — 면역원성 및 안전성 평가</p></div>
+            <div><strong>예상 일정</strong><p>Phase III 진입 2026 Q1</p></div>
+            <div><strong>파트너</strong><p>단독 개발</p></div>
+          </div>
+        </div>
+
+        <!-- CNS -->
+        <div class="pl-row" data-category="cns" data-animate>
+          <div class="pl-info">
+            <span class="pl-code">OV-701</span>
+            <span class="pl-indication">알츠하이머병 (Early-stage)</span>
+            <span class="tag tag--gray">CNS</span>
+          </div>
+          <div class="pl-bar-wrap">
+            <div class="pl-bar" data-stage="3" aria-label="Phase I 진행 중">
+              <div class="pl-progress" style="--stage:3"></div>
+              <div class="pl-stage-dot active" style="--pos:3"></div>
+            </div>
+          </div>
+          <button class="pl-detail-btn" aria-expanded="false" aria-controls="detail-ov701">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 6l5 5 5-5"/></svg>
+          </button>
+        </div>
+        <div class="pl-detail" id="detail-ov701" hidden>
+          <div class="pl-detail-inner">
+            <div><strong>작용 기전</strong><p>아밀로이드 β 응집 억제 소분자 화합물</p></div>
+            <div><strong>임상 단계</strong><p>Phase I — 안전성 및 PK 평가</p></div>
+            <div><strong>예상 일정</strong><p>Phase II 진입 2027 Q2</p></div>
+            <div><strong>파트너</strong><p>미국 신경과학 전문사 C사 공동 개발</p></div>
+          </div>
+        </div>
+
+      </div><!-- /#pipeline-list -->
+
+      <!-- Summary Stats -->
+      <div class="pipeline-stats">
+        <div class="ps-item">
+          <span class="ps-num" id="stat-total">6</span>
+          <span class="ps-label">표시된 파이프라인</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num">1</span>
+          <span class="ps-label">Phase III</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num">2</span>
+          <span class="ps-label">Phase II</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-num">2</span>
+          <span class="ps-label">Phase I</span>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /.page-wrap -->
+
+
+  <script>
+    // ─── Filter ───
+    document.querySelectorAll('.pf-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        let count = 0;
+        document.querySelectorAll('.pl-row').forEach(row => {
+          const match = filter === 'all' || row.dataset.category === filter;
+          row.toggleAttribute('data-hidden', !match);
+          // also hide associated detail
+          const detailId = row.querySelector('.pl-detail-btn')?.getAttribute('aria-controls');
+          if (detailId) document.getElementById(detailId)?.setAttribute('hidden', '');
+          if (match) count++;
+        });
+        document.getElementById('stat-total').textContent = count;
+      });
+    });
+
+    // ─── Detail toggle ───
+    document.querySelectorAll('.pl-detail-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const targetId = btn.getAttribute('aria-controls');
+        const detail = document.getElementById(targetId);
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        if (isOpen) detail.setAttribute('hidden', '');
+        else detail.removeAttribute('hidden');
+      });
+    });
+
+    // ─── Animate bars on load ───
+    document.querySelectorAll('.pl-progress').forEach(bar => {
+      bar.style.width = '0';
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const stage = parseInt(bar.style.getPropertyValue('--stage') || bar.closest('.pl-bar').dataset.stage);
+          bar.style.width = `calc((${stage} - 0.5) / 6 * 100%)`;
+        }, 200);
+      });
+    });
+  </script>
+
+  <script src="../assets/js/gnb.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

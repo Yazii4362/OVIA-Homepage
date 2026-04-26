@@ -1,0 +1,8 @@
+/* ═══════════════════════════════════════════════════════════════
+   OVIA — Common Font Import
+   모든 페이지에서 이 파일 하나만 참조하세요.
+   Google Fonts preconnect + import를 여기서 일괄 관리합니다.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Google Fonts Preconnect (CSS @import 방식) ─── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');

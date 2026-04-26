@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OVIA Pharmaceuticals — Opening New Paths to Life</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="assets/css/common.css" />
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/reset.css" />
   <link rel="stylesheet" href="assets/css/global.css" />
@@ -23,7 +20,18 @@
     /* 1. Hero */
     .hero-v2 { height: 100vh; display: flex; align-items: center; background: #fff; padding-top: 80px; }
     .hero-v2-title { font-size: clamp(3rem, 7.5vw, 100px); font-weight: 700; color: #121212; line-height: 1.05; }
-    .hero-v2-image { position: absolute; right: 0; top: 15%; width: 55%; height: 70%; background: #f4f4f4; border-radius: 60px 0 0 60px; z-index: 1; }
+    .hero-v2-image {
+      position: absolute; right: 0; top: 15%;
+      width: 55%; height: 70%;
+      border-radius: 60px 0 0 60px;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-v2-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* 2. R&D */
     .rd-section { background: #f9f9f9; }
@@ -63,7 +71,9 @@
     <div class="container">
       <h1 class="hero-v2-title">혁신을 이어갑니다.<br>건강한 세상을 넓혀갑니다.</h1>
     </div>
-    <div class="hero-v2-image"></div>
+    <div class="hero-v2-image">
+      <img src="assets/images/ovia.png" alt="OVIA Pharmaceuticals" />
+    </div>
   </section>
 
   <section class="rd-section">

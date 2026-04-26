@@ -1,0 +1,229 @@
+/* ═══════════════════════════════════════════════════════════════
+   OVIA — Sub-page Common Layout
+   모든 서브페이지에서 공통으로 사용하는 레이아웃/컴포넌트
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --page-red:    #C8372D;
+  --page-teal:   #2D8A7A;
+  --page-dark:   #2C2C2C;
+  --page-frost:  #F4F3F0;
+  --page-border: #E4E2DE;
+  --page-mid:    #6B6B6B;
+  --page-max:    1200px;
+  --r-card:      24px;
+  --r-img:       20px;
+  --r-input:     12px;
+}
+
+body {
+  font-family: 'DM Sans', 'Pretendard', system-ui, sans-serif;
+  color: var(--page-dark);
+  background: #fff;
+  padding-top: var(--header-height, 64px);
+}
+
+/* ─── Sub Visual (Page Hero) — ESG hero 스타일 통일 ─── */
+.sub-visual {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=2000') no-repeat center / cover;
+  color: #fff;
+  overflow: hidden;
+}
+.sub-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+}
+.sub-visual-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0 40px;
+}
+.sub-visual-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+}
+.sub-visual-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.sub-visual-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.sub-visual-desc {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ─── Page Wrap ─── */
+.page-wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 80px 40px 120px;
+}
+
+/* ─── Section ─── */
+.page-section {
+  margin-bottom: 96px;
+}
+.page-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Section header with number label */
+.sec-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--page-red);
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  color: var(--page-dark);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  font-size: 16px;
+  color: var(--page-mid);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+.sec-divider {
+  height: 1px;
+  background: var(--page-border);
+  margin-bottom: 40px;
+}
+
+/* ─── Card ─── */
+.card {
+  border-radius: var(--r-card);
+  border: 1px solid var(--page-border);
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: var(--page-frost);
+  border-radius: var(--r-img) var(--r-img) 0 0;
+}
+.card-body {
+  padding: 28px;
+}
+.card-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--page-red);
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--page-dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.card-text {
+  font-size: 14px;
+  color: var(--page-mid);
+  line-height: 1.65;
+}
+
+/* ─── Button ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--page-red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--r-card);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: #a82b23; transform: translateY(-1px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--page-dark);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--r-card);
+  border: 1.5px solid var(--page-border);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--page-dark); color: var(--page-dark); }
+
+/* ─── Tag / Badge ─── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tag--red  { background: #fdf0ef; color: var(--page-red); }
+.tag--teal { background: #e8f4f2; color: var(--page-teal); }
+.tag--gray { background: var(--page-frost); color: var(--page-mid); }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .sub-visual { height: 60vh; }
+  .sub-visual-inner { padding: 0 20px; }
+  .page-wrap { padding: 48px 20px 80px; }
+  .page-section { margin-bottom: 64px; }
+}

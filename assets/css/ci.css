@@ -19,52 +19,6 @@ body {
   background: #fff;
 }
 
-/* ─── Sub Visual ─── */
-.sub-visual {
-  background: var(--ci-bg);
-  padding: 80px 0 60px;
-  text-align: center;
-  border-bottom: 1px solid var(--ci-border);
-  margin-bottom: 60px;
-}
-.sub-visual-inner {
-  max-width: var(--ci-max);
-  margin: 0 auto;
-  padding: 0 40px;
-}
-.sub-visual-eyebrow {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ci-red);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.sub-visual-eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-}
-.sub-visual-title {
-  font-family: var(--font-display);
-  font-size: 56px;
-  font-weight: 700;
-  color: var(--ci-dark);
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  line-height: 1.1;
-}
-.sub-visual-desc {
-  font-size: 16px;
-  color: var(--ci-mid);
-}
-
 /* ─── Main Wrap ─── */
 .gc-wrap {
   max-width: var(--ci-max);
@@ -195,7 +149,9 @@ body {
   gap: 24px;
   margin-bottom: 48px;
 }
-.logo-version-item {}
+.logo-version-item {
+  /* placeholder */
+}
 .logo-version-preview {
   height: 200px;
   display: flex;
@@ -421,9 +377,15 @@ body {
   line-height: 1.2;
 }
 .typo-cormorant  { font-family: var(--font-display); font-size: 36px; font-weight: 600; color: var(--ci-dark); }
-.typo-dmsans     { font-family: var(--font-body); font-size: 18px; font-weight: 400; color: var(--ci-dark); }
+.typo-dmsans     { font-family: var(--font-body);    font-size: 18px; font-weight: 400; color: var(--ci-dark); }
 .typo-kopub      { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--ci-dark); }
-.typo-pretendard { font-family: var(--font-body); font-size: 17px; font-weight: 400; color: var(--ci-dark); }
+.typo-pretendard { font-family: var(--font-body);    font-size: 17px; font-weight: 400; color: var(--ci-dark); }
+
+/* Type Scale */
+.ts-h1    { font-family: var(--font-display); font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.1; }
+.ts-h2    { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); font-weight: 600; line-height: 1.2; }
+.ts-h3    { font-family: var(--font-body);    font-size: 24px; font-weight: 600; line-height: 1.3; }
+.ts-body  { font-family: var(--font-body);    font-size: 16px; font-weight: 400; line-height: 1.6; }
 .typo-desc {
   font-size: 13px;
   color: var(--ci-mid);

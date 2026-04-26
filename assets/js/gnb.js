@@ -12,67 +12,73 @@
       id: 'about',
       label: 'ABOUT US',
       items: [
-        { ko: '회사소개', en: 'Company Overview', href: 'about.html' },
-        { ko: '리더십',   en: 'Leadership',       href: 'about.html#leadership' },
-        { ko: 'CI',       en: 'CI',               href: 'ci.html' },
-        { ko: '연혁',     en: 'History',          href: 'about.html#history' },
-        { ko: '찾아오시는 길', en: 'Directions',  href: 'about.html#directions' },
+        { ko: '회사소개',      en: 'Company Overview', href: 'about-us/overview.html' },
+        { ko: '리더십',        en: 'Leadership',       href: 'about-us/leadership.html' },
+        { ko: 'CI',            en: 'CI',               href: 'about-us/ci.html' },
+        { ko: '연혁',          en: 'History',          href: 'about-us/history.html' },
+        { ko: '찾아오시는 길', en: 'Contact',          href: 'about-us/contact.html' },
       ],
     },
     {
       id: 'rd',
       label: 'R&amp;D',
       items: [
-        { ko: '연구분야',  en: 'Research Areas', href: 'rd.html#research' },
-        { ko: '파이프라인', en: 'Pipeline',       href: 'rd.html#pipeline' },
-        { ko: '파트너십',  en: 'Partnerships',   href: 'rd.html#partnership' },
+        { ko: '연구분야',   en: 'Research Areas', href: 'rd/research.html' },
+        { ko: '파이프라인', en: 'Pipeline',       href: 'rd/pipeline.html' },
+        { ko: '파트너십',   en: 'Partnerships',   href: 'rd/partnerships.html' },
       ],
     },
     {
       id: 'business',
       label: 'BUSINESS',
       items: [
-        { ko: '제품 정보',    en: 'Our Products',   href: 'business.html' },
-        { ko: '판매약국찾기', en: 'Find a Pharmacy', href: 'business.html#pharmacy' },
-        { ko: 'CMO',          en: 'CMO Services',   href: 'business.html#cmo' },
+        { ko: '제품 정보',    en: 'Our Products',   href: 'business/products.html' },
+        { ko: '판매약국찾기', en: 'Find a Pharmacy', href: 'business/pharmacy.html' },
+        { ko: 'CMO',          en: 'CMO Services',   href: 'business/cmo.html' },
       ],
     },
     {
       id: 'patient',
       label: 'PATIENT SUPPORT',
       items: [
-        { ko: '환자 지원 프로그램', en: 'Support Programs',   href: 'patient-support.html' },
-        { ko: '질환 정보',          en: 'Disease Information', href: 'patient-support.html#disease' },
-        { ko: '임상시험 참여',      en: 'Clinical Trials',    href: 'patient-support.html#trials' },
-        { ko: '의료진 지원',        en: 'For HCPs',           href: 'patient-support.html#hcp' },
+        { ko: '환자 지원 프로그램', en: 'Support Programs',   href: 'patient/programs.html' },
+        { ko: '질환 정보',          en: 'Disease Information', href: 'patient/disease.html' },
+        { ko: '임상시험 참여',      en: 'Clinical Trials',    href: 'patient/trials.html' },
+        { ko: '의료진 지원',        en: 'For HCPs',           href: 'patient/hcp.html' },
       ],
     },
     {
       id: 'sustainability',
       label: 'SUSTAINABILITY',
       items: [
-        { ko: 'Environmental', en: 'Environmental', href: 'sustainability.html#env' },
-        { ko: 'Social',        en: 'Social',        href: 'sustainability.html#social' },
-        { ko: 'Governance',    en: 'Governance',    href: 'sustainability.html#gov' },
-        { ko: 'ESG Report',    en: 'ESG Report',    href: 'sustainability.html#report' },
+        { ko: 'Environmental', en: 'Environmental', href: 'sustainability/environmental.html' },
+        { ko: 'Social',        en: 'Social',        href: 'sustainability/social.html' },
+        { ko: 'Governance',    en: 'Governance',    href: 'sustainability/governance.html' },
+        { ko: 'ESG Report',    en: 'ESG Report',    href: 'sustainability/esg-report.html' },
       ],
     },
     {
       id: 'ir',
       label: 'IR',
       items: [
-        { ko: 'IR 정보',  en: 'IR Overview',  href: 'ir.html' },
-        { ko: '공시정보', en: 'Disclosures',  href: 'ir.html#disclosures' },
-        { ko: '뉴스룸',   en: 'Newsroom',     href: 'ir.html#newsroom' },
+        { ko: 'IR 정보',  en: 'IR Overview',  href: 'ir/overview.html' },
+        { ko: '공시정보', en: 'Disclosures',  href: 'ir/disclosures.html' },
+        { ko: '뉴스룸',   en: 'Newsroom',     href: 'ir/newsroom.html' },
       ],
     },
   ];
 
   // ─── Detect active section from current page ───────────────
-  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  // pathname 예: /about-us/ci.html → 'about-us/ci'
+  const pathParts = location.pathname.replace(/^\//, '').replace(/\.html$/, '');
   const getActiveId = () => {
     for (const nav of NAV) {
-      if (nav.items.some(item => item.href.startsWith(currentPage.replace('.html', '')))) {
+      if (nav.items.some(item => {
+        const itemPath = item.href.replace(/\.html$/, '');
+        return pathParts.endsWith(itemPath.split('/').pop()) ||
+               pathParts === itemPath ||
+               pathParts.startsWith(itemPath.split('/')[0]);
+      })) {
         return nav.id;
       }
     }
@@ -80,7 +86,14 @@
   };
   const activeId = getActiveId();
 
-  // ─── Build chevron SVG ─────────────────────────────────────
+  // ─── Resolve href relative to site root ───────────────────
+  // gnb.js 위치: assets/js/gnb.js (루트 기준 2단계 아래)
+  // 서브페이지(about-us/, rd/ 등)에서도 올바른 경로를 만들기 위해
+  // 현재 페이지 depth를 계산해 상대경로 prefix를 붙임
+  const depth = location.pathname.replace(/^\//, '').split('/').length - 1;
+  const rootPrefix = depth > 0 ? '../'.repeat(depth) : '';
+
+  const resolveHref = href => rootPrefix + href;
   const chevronSVG = `<svg class="chevron" viewBox="0 0 14 14" fill="none" aria-hidden="true">
     <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
   </svg>`;
@@ -103,7 +116,7 @@
 
     const megaMenuColumns = NAV.map(nav => {
       const menuItems = nav.items.map(item => `
-        <a href="${item.href}">${item.ko}</a>`).join('');
+        <a href="${resolveHref(item.href)}">${item.ko}</a>`).join('');
 
       return `
         <div class="mega-menu" id="menu-${nav.id}">
@@ -125,7 +138,7 @@
   const buildMobileMenu = () => {
     return NAV.map(nav => {
       const subItems = nav.items.map(item =>
-        `<a href="${item.href}">${item.ko}</a>`
+        `<a href="${resolveHref(item.href)}">${item.ko}</a>`
       ).join('');
 
       return `
@@ -148,8 +161,8 @@
       <div class="container">
         <div class="header-inner">
 
-          <a href="index.html" class="header-logo" aria-label="OVIA Pharmaceuticals 홈">
-            <img src="assets/images/logo-primary.png" alt="OVIA Pharmaceuticals" class="logo-img" />
+          <a href="${resolveHref('index.html')}" class="header-logo" aria-label="OVIA Pharmaceuticals 홈">
+            <img src="${resolveHref('assets/images/ovia.png')}" alt="OVIA Pharmaceuticals" class="logo-img" />
           </a>
 
           <nav class="gnb" role="navigation" aria-label="주 메뉴">
