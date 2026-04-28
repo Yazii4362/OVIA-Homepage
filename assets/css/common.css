@@ -52,7 +52,7 @@
    --red-200: #FFA49E;
    --red-300: #FF6B61;
    --red-400: #F04438;
-   --red-500: #D92D20;
+   --red-500: #D63B30;
    --red-600: #B42318;
    --red-700: #912018;
    --red-800: #7A271A;
@@ -64,7 +64,7 @@
    --green-200: #BBF7D0;
    --green-300: #6EE7A0;
    --green-400: #22C55E;
-   --green-500: #16A34A;
+   --green-500: #2D8A7A;
    --green-600: #15803D;
    --green-700: #166534;
    --green-800: #14532D;
@@ -1815,3 +1815,228 @@ body {
   .page-wrap { padding: 48px 20px 80px; }
   .page-section { margin-bottom: 64px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   06. SITE FOOTER — Hanwha-style (3-layer layout)
+   ═══════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  border-top: 1px solid #e8e6e1;
+  background: #fff;
+  font-family: 'DM Sans', 'Pretendard', system-ui, sans-serif;
+}
+
+/* ─── Shared container ─── */
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: 48px;
+  position: relative;
+}
+
+/* ─── ① Nav columns area ─── */
+.footer-nav-area {
+  padding-block: 56px 48px;
+  border-bottom: 1px solid #e8e6e1;
+}
+
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
+}
+
+.footer-col-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #121212;
+  margin-bottom: 16px;
+}
+
+.footer-col-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-col-title a:hover { color: #C8372D; }
+
+.footer-col-title--ext .footer-ext-arrow {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul li a {
+  font-size: 13px;
+  color: #6b6b6b;
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+.footer-col ul li a:hover { color: #C8372D; }
+
+/* ─── TOP 버튼 ─── */
+.footer-top-btn {
+  position: absolute;
+  top: 0;
+  right: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid #d4d0ca;
+  border-radius: 50%;
+  background: transparent;
+  color: #6b6b6b;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  justify-content: center;
+}
+.footer-top-btn:hover {
+  border-color: #C8372D;
+  color: #C8372D;
+  transform: translateY(-3px);
+}
+.footer-top-btn span {
+  line-height: 1;
+}
+
+/* ─── ② Util links + SNS ─── */
+.footer-util-area {
+  padding-block: 20px;
+  border-bottom: 1px solid #e8e6e1;
+}
+
+.footer-util-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-util-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.footer-util-links a {
+  font-size: 12px;
+  color: #6b6b6b;
+  text-decoration: none;
+  padding-inline: 14px;
+  border-right: 1px solid #d4d0ca;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.footer-util-links a:first-child { padding-left: 0; }
+.footer-util-links a:last-child { border-right: none; }
+.footer-util-links a:hover { color: #121212; }
+
+/* SNS 아이콘 그룹 */
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #6b6b6b;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+.footer-social-btn:hover {
+  background-color: #f4f3f0;
+  color: #121212;
+}
+
+/* ─── ③ Brand bar (Logo + Copyright) ─── */
+.footer-brand-area {
+  padding-block: 24px 28px;
+}
+
+.footer-brand-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo img {
+  height: 36px;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.footer-logo:hover img { opacity: 1; }
+
+.footer-copyright {
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1100px) {
+  .footer-nav-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container { padding-inline: 24px; }
+
+  .footer-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .footer-top-btn {
+    display: none;
+  }
+
+  .footer-util-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-util-links {
+    flex-wrap: wrap;
+    gap: 8px 0;
+  }
+
+  .footer-brand-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-nav-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-nav-area {
+    padding-block: 40px 32px;
+  }
+}
+

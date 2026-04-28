@@ -5,6 +5,90 @@
 (function () {
   'use strict';
 
+  // ─── GSAP Scroll Animations ───
+  gsap.registerPlugin(ScrollTrigger);
+
+  // HERO
+  gsap.timeline({
+    scrollTrigger:{
+      trigger:".hero-v2",
+      start:"top top",
+      end:"+=150%",
+      scrub:1,
+      pin:true
+    }
+  })
+  .to(".hero-v2-image img",{
+    scale:1.2,
+    ease:"none"
+  })
+  .to(".hero-v2-title",{
+    y:-100,
+    opacity:0
+  },0.5);
+
+  // 텍스트 등장 (애플 스타일)
+  gsap.from(".hero-v2-title",{
+    y:50,
+    opacity:0,
+    duration:1,
+    ease:"power3.out"
+  });
+
+  // R&D
+  gsap.from(".section-title",{
+    scrollTrigger:".rd-section",
+    y:60,
+    opacity:0,
+    duration:1
+  });
+  
+  gsap.from(".section-desc",{
+    scrollTrigger:".rd-section",
+    y:40,
+    opacity:0,
+    delay:0.2
+  });
+
+  // PRODUCT
+  gsap.from(".product-box-img",{
+    scrollTrigger:".product-section",
+    y:80,
+    opacity:0,
+    duration:1
+  });
+  
+  gsap.from(".product-section h3",{
+    scrollTrigger:".product-section",
+    x:40,
+    opacity:0,
+    delay:0.2
+  });
+
+  // ESG (분위기 전환)
+  gsap.from(".esg-item",{
+    scrollTrigger:".esg-section-v2",
+    y:50,
+    opacity:0,
+    stagger:0.15
+  });
+
+  // NEWS
+  gsap.from(".news-card",{
+    scrollTrigger:".news-section",
+    y:60,
+    opacity:0,
+    stagger:0.2
+  });
+
+  // CONTACT
+  gsap.from(".contact-row",{
+    scrollTrigger:".contact-section-v2",
+    x:-50,
+    opacity:0,
+    stagger:0.2
+  });
+
   // ─── Scroll animation (IntersectionObserver) ───
   const animateObserver = new IntersectionObserver(
     entries => {
