@@ -8,32 +8,7 @@
   // ─── GSAP Scroll Animations ───
   gsap.registerPlugin(ScrollTrigger);
 
-  // HERO
-  gsap.timeline({
-    scrollTrigger:{
-      trigger:".hero-v2",
-      start:"top top",
-      end:"+=150%",
-      scrub:1,
-      pin:true
-    }
-  })
-  .to(".hero-v2-image img",{
-    scale:1.2,
-    ease:"none"
-  })
-  .to(".hero-v2-title",{
-    y:-100,
-    opacity:0
-  },0.5);
-
-  // 텍스트 등장 (애플 스타일)
-  gsap.from(".hero-v2-title",{
-    y:50,
-    opacity:0,
-    duration:1,
-    ease:"power3.out"
-  });
+  // HERO 애니메이션은 index.html의 인라인 스크립트에서 처리됨
 
   // R&D
   gsap.from(".section-title",{

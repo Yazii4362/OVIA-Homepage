@@ -32,14 +32,19 @@
       word-break: keep-all;
     }
 
-    /* 1. Hero */
+    /* 1. Hero - Hanwha Style Interactive */
     .hero-v2 {
+      height: 200vh;
+      position: relative;
+      background: #000;
+    }
+
+    .hero-sticky {
+      position: sticky;
+      top: 0;
       height: 100vh;
       display: flex;
       align-items: center;
-      background: #000;
-      padding-top: 80px;
-      position: relative;
       overflow: hidden;
     }
 
@@ -72,6 +77,64 @@
       color: #fff;
       line-height: 1.05;
       letter-spacing: -0.02em;
+    }
+
+    .__future-slogan {
+      display: block;
+      overflow: visible;
+    }
+
+    .__future-slogan--bottom {
+      opacity: 0;
+    }
+
+    .__char {
+      display: inline-block;
+      transform: translateY(0);
+      opacity: 1;
+      will-change: transform;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 32px);
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: var(--space-6);
+    }
+
+    .__imgs {
+      opacity: 0;
+      transform: scale(0.9);
+      will-change: opacity, transform;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: var(--space-10);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: var(--type-label-sm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+
+    .hero-scroll-indicator::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDown {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(10px); opacity: 0.3; }
     }
 
     .hero-v2-image {
@@ -248,23 +311,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
-      transition: 0.3s;
       text-decoration: none;
       color: #fff;
-    }
-
-    .esg-item:hover {
-      color: #16A34A;
-      padding-left: 20px;
-    }
-
-    .esg-item:hover span:last-child {
-      transform: translateX(10px);
-    }
-
-    .esg-item span:last-child {
-      transition: transform 0.3s;
     }
 
     /* 5. Newsroom */
@@ -291,7 +339,64 @@
       padding: 32px;
     }
 
-    /* 6. Contact Us */
+    /* 6. Patient Support */
+    .patient-section {
+      padding: var(--space-30) 0;
+      background: linear-gradient(135deg, var(--red-50) 0%, var(--color-surface) 100%);
+    }
+
+    .patient-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+
+    .patient-card {
+      background: var(--color-surface);
+      border-radius: var(--shape-xl);
+      padding: var(--space-10);
+      border: 1px solid var(--color-outline-variant);
+      transition: all var(--duration-medium2) var(--motion-emphasized);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .patient-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--elevation-3);
+      border-color: var(--color-primary);
+    }
+
+    .patient-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto var(--space-6);
+      border-radius: var(--shape-md);
+      background: var(--color-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      transition: transform var(--duration-medium2) var(--motion-emphasized);
+    }
+
+    .patient-card:hover .patient-icon {
+      transform: scale(1.1);
+    }
+
+    .patient-title {
+      font-size: var(--type-title-lg);
+      font-weight: 600;
+      color: var(--color-on-surface);
+      margin-bottom: var(--space-3);
+    }
+
+    .patient-desc {
+      font-size: var(--type-body-md);
+      line-height: 1.6;
+      color: var(--color-on-surface-variant);
+    }
     .contact-section-v2 {
       background: linear-gradient(135deg, #D92D20 0%, #0F172A 100%);
       color: #fff;
@@ -339,6 +444,11 @@
             </button>
           </div>
           <div class="gnb-item">
+            <button class="gnb-trigger">PATIENT SUPPORT
+              <svg class="chevron" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <div class="gnb-item">
             <button class="gnb-trigger">SUSTAINABILITY
               <svg class="chevron" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
@@ -354,25 +464,41 @@
               <div class="mega-menu">
                 <div class="mega-menu-title">ABOUT US</div>
                 <a href="about-us/overview.html">회사소개</a>
+                <a href="about-us/leadership.html">리더십</a>
                 <a href="about-us/ci.html">CI</a>
                 <a href="about-us/history.html">연혁</a>
+                <a href="about-us/directions.html">찾아오시는 길</a>
               </div>
               <div class="mega-menu">
                 <div class="mega-menu-title">R&amp;D</div>
+                <a href="rd/research.html">연구분야</a>
                 <a href="rd/pipeline.html">파이프라인</a>
                 <a href="rd/partnership.html">파트너십</a>
               </div>
               <div class="mega-menu">
                 <div class="mega-menu-title">BUSINESS</div>
                 <a href="business/products.html">제품 정보</a>
+                <a href="business/cmo.html">CMO</a>
+              </div>
+              <div class="mega-menu">
+                <div class="mega-menu-title">PATIENT SUPPORT</div>
+                <a href="patient-support/programs.html">환자 지원 프로그램</a>
+                <a href="patient-support/disease.html">질환 정보</a>
+                <a href="patient-support/trials.html">임상시험 참여</a>
+                <a href="patient-support/hcp.html">의료진 지원</a>
               </div>
               <div class="mega-menu">
                 <div class="mega-menu-title">SUSTAINABILITY</div>
-                <a href="sustainability/esg-report.html">ESG Report</a>
+                <a href="sustainability/esg-report.html#env">Environmental</a>
+                <a href="sustainability/esg-report.html#social">Social</a>
+                <a href="sustainability/esg-report.html#gov">Governance</a>
+                <a href="sustainability/esg-report.html#report">ESG Report</a>
               </div>
               <div class="mega-menu">
                 <div class="mega-menu-title">IR</div>
                 <a href="ir/overview.html">IR 정보</a>
+                <a href="ir/disclosures.html">공시정보</a>
+                <a href="ir/newsroom.html">뉴스룸</a>
               </div>
             </div>
           </div>
@@ -394,13 +520,30 @@
   </header>
 
   <main>
+    <!-- ═══════════════════════════════════════════════════════════════
+         01. HERO SECTION - Hanwha Style Interactive
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="hero-v2">
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/video/kv-mp4.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="container">
-        <h1 class="hero-v2-title">혁신을 이어갑니다.<br>건강한 세상을 넓혀갑니다.</h1>
+      <div class="hero-sticky">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="assets/video/kv-mp4.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+          <h1 class="hero-v2-title" id="heroTitle">
+            <span class="__future-slogan __future-slogan--top">
+              <span class="__char">혁</span><span class="__char">신</span><span class="__char">을</span><span class="__char"> </span><span class="__char">이</span><span class="__char">어</span><span class="__char">갑</span><span class="__char">니</span><span class="__char">다</span><span class="__char">.</span>
+            </span>
+            <br>
+            <span class="__future-slogan __future-slogan--bottom">
+              <span class="__char">건</span><span class="__char">강</span><span class="__char">한</span><span class="__char"> </span><span class="__char">세</span><span class="__char">상</span><span class="__char">을</span><span class="__char"> </span><span class="__char">넓</span><span class="__char">혀</span><span class="__char">갑</span><span class="__char">니</span><span class="__char">다</span><span class="__char">.</span>
+            </span>
+          </h1>
+          <p class="hero-subtitle __imgs" id="heroSubtitle">Opening New Paths to Life</p>
+        </div>
+        <div class="hero-scroll-indicator" id="scrollIndicator">
+          Scroll
+        </div>
       </div>
     </section>
 
@@ -436,6 +579,63 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         04. PATIENT SUPPORT SECTION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="patient-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Patient Support</p>
+          <h2 class="section-title">환자 중심 의료 서비스</h2>
+          <p class="section-desc">
+            환자와 의료진을 위한 포괄적인 지원 프로그램을<br />
+            제공합니다.
+          </p>
+        </div>
+
+        <div class="patient-grid">
+          <!-- Card 1 -->
+          <div class="patient-card">
+            <div class="patient-icon">
+              <!-- 아이콘 자리 -->
+            </div>
+            <h3 class="patient-title">환자 지원 프로그램</h3>
+            <p class="patient-desc">치료비 지원 및 상담 서비스</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="patient-card">
+            <div class="patient-icon">
+              <!-- 아이콘 자리 -->
+            </div>
+            <h3 class="patient-title">질환 정보</h3>
+            <p class="patient-desc">질병에 대한 이해와 관리</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="patient-card">
+            <div class="patient-icon">
+              <!-- 아이콘 자리 -->
+            </div>
+            <h3 class="patient-title">임상시험 참여</h3>
+            <p class="patient-desc">신약 개발에 동참하기</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="patient-card">
+            <div class="patient-icon">
+              <!-- 아이콘 자리 -->
+            </div>
+            <h3 class="patient-title">의료진 지원</h3>
+            <p class="patient-desc">전문가를 위한 리소스</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         05. ESG SECTION
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="esg-section-v2">
       <div class="esg-bg-overlay"></div>
       <div class="container esg-content">
@@ -502,6 +702,9 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         06. CTA SECTION
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="contact-section-v2">
       <div class="container">
         <h2 class="section-title">Contact Us</h2>
@@ -514,30 +717,52 @@
   <!-- Footer -->
   <footer style="background: var(--color-inverse-surface); color: var(--color-on-inverse); padding: var(--space-20) 0 var(--space-10);">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-12); margin-bottom: var(--space-12);">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: var(--space-8); margin-bottom: var(--space-12);">
         <div>
           <img src="assets/images/ovia.png" alt="OVIA" style="height: 32px; margin-bottom: var(--space-6); filter: brightness(0) invert(1);" />
-          <p style="font-size: var(--type-body-md); line-height: 1.7; opacity: 0.8;">
-            Opening New Paths to Life<br />
-            혁신적인 신약 개발로 건강한 미래를 만듭니다.
+          <p style="font-size: var(--type-body-md); line-height: 1.7; opacity: 0.8; margin-bottom: var(--space-4);">
+            Opening New Paths to Life
+          </p>
+          <p style="font-size: var(--type-body-sm); line-height: 1.6; opacity: 0.6;">
+            혁신적인 신약 개발로<br />건강한 미래를 만듭니다.
           </p>
         </div>
         <div>
-          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6;">COMPANY</h4>
-          <a href="about-us/overview.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8;">회사소개</a>
-          <a href="about-us/ci.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8;">CI</a>
+          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6; letter-spacing: 0.08em;">ABOUT US</h4>
+          <a href="about-us/overview.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">회사소개</a>
+          <a href="about-us/ci.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">CI</a>
+          <a href="about-us/history.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">연혁</a>
         </div>
         <div>
-          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6;">BUSINESS</h4>
-          <a href="rd/pipeline.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8;">파이프라인</a>
+          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6; letter-spacing: 0.08em;">R&D</h4>
+          <a href="rd/pipeline.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">파이프라인</a>
+          <a href="rd/partnership.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">파트너십</a>
         </div>
         <div>
-          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6;">CONTACT</h4>
-          <a href="mailto:info@ovia.com" style="display: block; margin-bottom: var(--space-2); opacity: 0.8;">info@ovia.com</a>
+          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6; letter-spacing: 0.08em;">BUSINESS</h4>
+          <a href="business/products.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">제품 정보</a>
+          <a href="business/cmo.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">CMO</a>
+        </div>
+        <div>
+          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6; letter-spacing: 0.08em;">PATIENT</h4>
+          <a href="patient-support/programs.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">환자 지원</a>
+          <a href="patient-support/hcp.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">의료진 지원</a>
+        </div>
+        <div>
+          <h4 style="font-size: var(--type-label-lg); font-weight: 600; margin-bottom: var(--space-4); opacity: 0.6; letter-spacing: 0.08em;">MORE</h4>
+          <a href="sustainability/esg-report.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">ESG</a>
+          <a href="ir/overview.html" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">IR</a>
+          <a href="mailto:info@ovia.com" style="display: block; margin-bottom: var(--space-2); opacity: 0.8; font-size: var(--type-body-sm);">Contact</a>
         </div>
       </div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); font-size: var(--type-body-sm); opacity: 0.6;">
-        © 2026 OVIA Pharmaceuticals. All rights reserved.
+      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); display: flex; justify-content: space-between; align-items: center;">
+        <p style="font-size: var(--type-body-sm); opacity: 0.6;">
+          © 2026 OVIA Pharmaceuticals. All rights reserved.
+        </p>
+        <div style="display: flex; gap: var(--space-4);">
+          <a href="#" style="font-size: var(--type-body-sm); opacity: 0.6;">개인정보처리방침</a>
+          <a href="#" style="font-size: var(--type-body-sm); opacity: 0.6;">이용약관</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -547,6 +772,114 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="assets/js/header.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    // Hanwha-style Hero Interaction with Character Animation
+    // ═══════════════════════════════════════════════════════════════
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 초기 상태 설정
+    gsap.set(".__future-slogan--top .__char", { yPercent: 105 });
+    gsap.set(".__future-slogan--bottom .__char", { yPercent: 105 });
+
+    // Hero Timeline with ScrollTrigger
+    const heroTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero-sticky",
+        start: "top top",
+        end: "+=3000",
+        pin: true,
+        scrub: 1,
+        markers: false
+      }
+    });
+
+    // (1) 첫 번째 슬로건 등장 (Top)
+    heroTimeline.to(".__future-slogan--top .__char", {
+      yPercent: 0,
+      stagger: 0.03,
+      duration: 1,
+      ease: "power2.out"
+    })
+    // (2) 중앙 이미지/서브타이틀 스케일 및 투명도 조절
+    .to(".__imgs", {
+      autoAlpha: 1,
+      scale: 1,
+      duration: 2
+    }, "-=0.5")
+    // (3) 두 번째 슬로건 등장 및 첫 번째 퇴장
+    .to(".__future-slogan--top", { 
+      opacity: 0, 
+      y: -50, 
+      duration: 1 
+    })
+    .to(".__future-slogan--bottom", {
+      opacity: 1,
+      duration: 0.5
+    }, "<")
+    .to(".__future-slogan--bottom .__char", {
+      yPercent: 0,
+      stagger: 0.03,
+      duration: 1,
+      ease: "power2.out"
+    }, "<0.2");
+
+    // Scroll Indicator
+    gsap.to('#scrollIndicator', {
+      opacity: 1,
+      scrollTrigger: {
+        trigger: '.hero-v2',
+        start: 'top top',
+        end: '30% top',
+        scrub: 1
+      }
+    });
+
+    // Video opacity change
+    gsap.to('.hero-video', {
+      opacity: 0.8,
+      scale: 1.1,
+      scrollTrigger: {
+        trigger: '.hero-v2',
+        start: 'top top',
+        end: '100% top',
+        scrub: 1
+      }
+    });
+
+    // Product cards animation
+    gsap.utils.toArray('.product-card').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power3.out'
+      });
+    });
+
+    // Patient cards animation
+    gsap.utils.toArray('.patient-card').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power3.out'
+      });
+    });
+  </script>
 
 </body>
 
