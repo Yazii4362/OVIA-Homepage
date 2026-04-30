@@ -1,1 +1,129 @@
-﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership — OVIA Pharmaceuticals</title>
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div id="gnb-placeholder"></div>
+
+  <div class="sub-visual">
+    <div class="sub-visual-inner">
+      <p class="sub-visual-eyebrow">About Us</p>
+      <h1 class="sub-visual-title">Leadership</h1>
+      <p class="sub-visual-desc">최고의 전문가들이 모여 인류의 건강한 미래를 위한 혁신을 이끕니다.</p>
+    </div>
+  </div>
+
+  <div class="page-wrap container">
+    <section class="page-section">
+      <div class="section-header section-header--center">
+        <p class="sec-label">Board of Directors</p>
+        <h2 class="sec-title">The People Leading OVIA</h2>
+        <p class="section-desc" style="margin-inline: auto;">우리는 혁신적인 기술이 인류의 삶을 변화시킬 수 있다고 믿습니다.</p>
+      </div>
+
+      <div class="leadership-grid">
+        <!-- Leader 1 -->
+        <div class="leader-card apple-card">
+          <div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="leader-info">
+            <p class="leader-role">CEO & President</p>
+            <h3 class="leader-name">김태훈</h3>
+            <p class="leader-bio">헬스케어 산업에서 25년 이상의 경영 경험을 보유한 혁신 전략 전문가입니다.</p>
+          </div>
+        </div>
+
+        <!-- Leader 2 -->
+        <div class="leader-card apple-card">
+          <div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="leader-info">
+            <p class="leader-role">Chief Scientific Officer</p>
+            <h3 class="leader-name">이지현</h3>
+            <p class="leader-bio">글로벌 신약 개발 프로젝트를 다수 성공시킨 생명공학 분야의 권위자입니다.</p>
+          </div>
+        </div>
+
+        <!-- Leader 3 -->
+        <div class="leader-card apple-card">
+          <div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="leader-info">
+            <p class="leader-role">Chief Financial Officer</p>
+            <h3 class="leader-name">박준영</h3>
+            <p class="leader-bio">전략적 재무 관리와 투자 유치를 통해 기업 가치 극대화를 실현하고 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-12);
+      margin-top: var(--space-20);
+    }
+
+    .leader-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .leader-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background-size: cover;
+      background-position: center;
+      transition: transform var(--transition-slow);
+    }
+
+    .leader-card:hover .leader-image {
+      transform: scale(1.05);
+    }
+
+    .leader-info {
+      padding: var(--space-10);
+    }
+
+    .leader-role {
+      font-size: var(--type-label-lg);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+      letter-spacing: 0.1em;
+    }
+
+    .leader-name {
+      font-size: var(--type-headline-sm);
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.01em;
+    }
+
+    .leader-bio {
+      font-size: var(--type-body-lg);
+      color: var(--color-on-surface-variant);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 600px) {
+      .leadership-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+    }
+  </style>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../assets/js/gnb.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/submenu.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/footer.js"></script>
+</body>
+</html>

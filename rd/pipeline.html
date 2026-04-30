@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -18,80 +18,24 @@
     </div>
   </div>
 
-  <div class="page-wrap">
+  <div class="page-wrap container">
 
-    <!-- Tech Spec Section (Hero 스타일) -->
-    <section class="tech-spec-section">
-      <div class="tech-spec-hero">
-        <div class="tech-spec-label">HERO</div>
-        <h2 class="tech-spec-title">풀스크린 제품 등장 + 360° 로테이션</h2>
-        <div class="tech-spec-meta">100vh · pin</div>
+    <!-- Filter Bar -->
+    <section class="page-section" style="padding-bottom: 0;">
+      <div class="section-header section-header--center">
+        <h2 class="sec-title">R&D Pipeline</h2>
       </div>
 
-      <div class="tech-spec-browser">
-        <div class="browser-chrome">
-          <div class="browser-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <div class="browser-url">ovia.com</div>
-        </div>
-        <div class="browser-content">
-          <div class="browser-nav">Nav: ovia · Products · R&D · About · Contact</div>
-          <div class="browser-logo">OVIA</div>
-          <div class="product-360">
-            <div class="product-circle">
-              <span class="product-label">제품<br>360°</span>
-            </div>
-            <div class="product-drag-hint">⟲ 드래그하여 회전</div>
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">제품명</h3>
-            <p class="product-copy">한 줄 강렬한 카피</p>
-            <div class="product-actions">
-              <button class="btn-primary">구입하기</button>
-              <button class="btn-secondary">더 알아보기</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tech-spec-grid">
-        <div class="tech-spec-card">
-          <div class="tsc-label">360° 구현 방식</div>
-          <div class="tsc-content">Spline 또는 이미지 시퀀스</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="tsc-label">진입 애니메이션</div>
-          <div class="tsc-content">fade-up + scale 0.9→1</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="tsc-label">스크롤 트리거</div>
-          <div class="tsc-content">pin + scrub 로테이션</div>
-        </div>
-        <div class="tech-spec-card">
-          <div class="tsc-label">배경</div>
-          <div class="tsc-content">White #FFFFFF, 미세 노이즈 없음</div>
-        </div>
-      </div>
-
-      <div class="tech-spec-tags">
-        <span class="tech-tag">ScrollSmoother</span>
-        <span class="tech-tag">pin:true</span>
-        <span class="tech-tag">scrub:1</span>
-        <span class="tech-tag">Spline or img-seq</span>
+      <div class="pipeline-filters" role="group" aria-label="파이프라인 필터">
+        <button class="pf-btn active" data-filter="all">전체</button>
+        <button class="pf-btn" data-filter="oncology">Oncology</button>
+        <button class="pf-btn" data-filter="rare">Rare Disease</button>
+        <button class="pf-btn" data-filter="infectious">Infectious Disease</button>
+        <button class="pf-btn" data-filter="cns">CNS</button>
       </div>
     </section>
 
-    <!-- Filter Bar -->
-    <div class="pipeline-filters" role="group" aria-label="파이프라인 필터">
-      <button class="pf-btn active" data-filter="all">전체</button>
-      <button class="pf-btn" data-filter="oncology">Oncology</button>
-      <button class="pf-btn" data-filter="rare">Rare Disease</button>
-      <button class="pf-btn" data-filter="infectious">Infectious Disease</button>
-      <button class="pf-btn" data-filter="cns">CNS</button>
-    </div>
-
-    <!-- ⭐ Interactive Pipeline Chart -->
+    <!-- Pipeline Chart -->
     <section class="page-section pipeline-section">
 
       <!-- Stage Header -->
@@ -290,6 +234,249 @@
 
   </div><!-- /.page-wrap -->
 
+  <style>
+    /* ─── Pipeline Filters ─── */
+    .pipeline-filters {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-top: var(--space-12);
+    }
+    .pf-btn {
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--shape-full);
+      font-size: var(--type-label-lg);
+      font-weight: 500;
+      color: var(--color-on-surface-variant);
+      border: 1px solid var(--color-outline-variant);
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .pf-btn:hover {
+      background: var(--state-hover);
+    }
+    .pf-btn.active {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-color: var(--color-primary);
+    }
+
+    /* ─── Stage Header ─── */
+    .pipeline-stage-header {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-4) var(--space-6);
+      background: var(--color-inverse-surface);
+      color: var(--color-on-inverse);
+      border-radius: var(--shape-md) var(--shape-md) 0 0;
+      font-size: var(--type-label-md);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .psh-stages {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      text-align: center;
+      gap: var(--space-1);
+    }
+    .psh-stages span {
+      padding: var(--space-2);
+      font-size: var(--type-label-sm);
+    }
+
+    /* ─── Pipeline Row ─── */
+    .pl-row {
+      display: grid;
+      grid-template-columns: 280px 1fr 40px;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-5) var(--space-6);
+      border-bottom: 1px solid var(--color-outline-variant);
+      background: var(--color-surface);
+      transition: background var(--transition-fast);
+    }
+    .pl-row:hover {
+      background: var(--color-surface-variant);
+    }
+    .pl-row[data-hidden] {
+      display: none;
+    }
+
+    .pl-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .pl-code {
+      font-size: var(--type-title-md);
+      font-weight: 700;
+      color: var(--color-on-surface);
+    }
+    .pl-indication {
+      font-size: var(--type-body-sm);
+      color: var(--color-on-surface-variant);
+    }
+
+    /* ─── Tags ─── */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: var(--shape-full);
+      font-size: var(--type-label-sm);
+      font-weight: 600;
+      width: fit-content;
+      margin-top: var(--space-1);
+    }
+    .tag--red {
+      background: var(--color-primary-container);
+      color: var(--color-on-primary-container);
+    }
+    .tag--teal {
+      background: var(--color-secondary-container);
+      color: var(--color-on-secondary-container);
+    }
+    .tag--gray {
+      background: var(--color-surface-container);
+      color: var(--color-on-surface-variant);
+    }
+
+    /* ─── Progress Bar ─── */
+    .pl-bar-wrap {
+      width: 100%;
+    }
+    .pl-bar {
+      position: relative;
+      height: 8px;
+      background: var(--color-surface-dim);
+      border-radius: var(--shape-full);
+      overflow: visible;
+    }
+    .pl-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: var(--shape-full);
+      background: var(--gradient-brand);
+      width: 0;
+      transition: width 1.2s var(--motion-emphasized);
+    }
+    .pl-stage-dot {
+      position: absolute;
+      top: 50%;
+      left: calc((var(--pos) - 0.5) / 6 * 100%);
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      border: 3px solid var(--color-surface);
+      box-shadow: 0 0 0 2px var(--color-primary);
+      z-index: 1;
+    }
+
+    /* ─── Detail Toggle ─── */
+    .pl-detail-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-on-surface-variant);
+      transition: all var(--transition-fast);
+    }
+    .pl-detail-btn:hover {
+      background: var(--state-hover);
+    }
+    .pl-detail-btn[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+
+    .pl-detail {
+      border-bottom: 1px solid var(--color-outline-variant);
+      background: var(--color-surface-variant);
+      animation: fadeIn 0.3s var(--motion-emphasized);
+    }
+    .pl-detail-inner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-6);
+      padding: var(--space-8) var(--space-6);
+      padding-left: calc(280px + var(--space-10));
+    }
+    .pl-detail-inner strong {
+      display: block;
+      font-size: var(--type-label-md);
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-1);
+    }
+    .pl-detail-inner p {
+      font-size: var(--type-body-md);
+      color: var(--color-on-surface-variant);
+      line-height: 1.5;
+    }
+
+    /* ─── Summary Stats ─── */
+    .pipeline-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-16);
+    }
+    .ps-item {
+      text-align: center;
+      padding: var(--space-10);
+      background: var(--color-surface);
+      border-radius: var(--shape-xl);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .ps-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 56px);
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .ps-label {
+      font-size: var(--type-label-lg);
+      font-weight: 600;
+      color: var(--color-on-surface-variant);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .pipeline-stage-header {
+        display: none;
+      }
+      .pl-row {
+        grid-template-columns: 1fr 40px;
+      }
+      .pl-bar-wrap {
+        grid-column: 1 / -1;
+        margin-top: var(--space-2);
+      }
+      .pl-detail-inner {
+        padding-left: var(--space-6);
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 
   <script>
     // ─── Filter ───
@@ -302,7 +489,6 @@
         document.querySelectorAll('.pl-row').forEach(row => {
           const match = filter === 'all' || row.dataset.category === filter;
           row.toggleAttribute('data-hidden', !match);
-          // also hide associated detail
           const detailId = row.querySelector('.pl-detail-btn')?.getAttribute('aria-controls');
           if (detailId) document.getElementById(detailId)?.setAttribute('hidden', '');
           if (match) count++;
@@ -339,7 +525,8 @@
   <div id="footer-placeholder"></div>
 
   <script src="../assets/js/gnb.js"></script>
-  <script src="../assets/js/header.js"></script>`n  <script src="../assets/js/submenu.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/submenu.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/footer.js"></script>
 </body>

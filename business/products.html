@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — OVIA Pharmaceuticals</title>
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div id="gnb-placeholder"></div>
+
+  <div class="sub-visual">
+    <div class="sub-visual-inner">
+      <p class="sub-visual-eyebrow">Business</p>
+      <h1 class="sub-visual-title">Products</h1>
+      <p class="sub-visual-desc">OVIA가 제공하는 고품질 의약품과 솔루션을 확인하세요.</p>
+    </div>
+  </div>
+
+  <div class="page-wrap container">
+    <section class="page-section">
+      <div class="section-header section-header--center">
+        <p class="sec-label">Our Portfolio</p>
+        <h2 class="sec-title">혁신적인 의약품 솔루션</h2>
+        <p class="section-desc" style="margin-inline: auto; max-width: 800px; font-size: var(--type-body-lg); color: var(--color-on-surface-variant);">우리는 더 건강한 미래를 위해 최첨단 바이오 기술이 집약된 제품들을 제공합니다.</p>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-item apple-card">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80')"></div>
+          </div>
+          <div class="product-body">
+            <span class="badge badge--primary">Oncology</span>
+            <h3 class="product-name">OV-201</h3>
+            <p class="product-desc">비소세포폐암 치료를 위한 차세대 표적 항암제입니다. 정밀 의료 기술을 통해 환자 맞춤형 치료를 실현합니다.</p>
+            <div class="product-footer">
+              <a href="#" class="btn btn-text">Learn More →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-item apple-card">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?auto=format&fit=crop&w=800&q=80')"></div>
+          </div>
+          <div class="product-body">
+            <span class="badge badge--secondary">Rare Disease</span>
+            <h3 class="product-name">OV-501</h3>
+            <p class="product-desc">파브리병 환자를 위한 효소 대체 요법 치료제입니다. 혁신적인 약물 전달 시스템으로 안정적인 약효를 제공합니다.</p>
+            <div class="product-footer">
+              <a href="#" class="btn btn-text">Learn More →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-item apple-card">
+          <div class="product-image-wrap">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80')"></div>
+          </div>
+          <div class="product-body">
+            <span class="badge badge--neutral">Biosimilar</span>
+            <h3 class="product-name">OV-B10</h3>
+            <p class="product-desc">글로벌 시장에서 검증된 고품질 바이오시밀러입니다. 탁월한 경제성과 효능으로 치료 접근성을 높입니다.</p>
+            <div class="product-footer">
+              <a href="#" class="btn btn-text">Learn More →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: var(--space-12);
+      margin-top: var(--space-12);
+    }
+
+    .product-item {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .product-image-wrap {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-item:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-body {
+      padding: var(--space-10);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-name {
+      font-size: var(--type-headline-sm);
+      font-weight: 700;
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.01em;
+    }
+
+    .product-desc {
+      font-size: var(--type-body-lg);
+      color: var(--color-on-surface-variant);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+      flex: 1;
+      word-break: keep-all;
+    }
+
+    .product-footer {
+      border-top: 1px solid var(--color-outline-variant);
+      padding-top: var(--space-6);
+    }
+
+    @media (max-width: 600px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../assets/js/gnb.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/submenu.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/footer.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,270 @@
   <title>Newsroom — OVIA Pharmaceuticals</title>
   <link rel="stylesheet" href="../assets/css/common.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* ── Sub Visual ── */
+    .sub-visual {
+      height: 56vh;
+      min-height: 420px;
+      background: #0a0a0a;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+    .sub-visual::after {
+      display: none;
+    }
+    .sub-visual-inner {
+      text-align: left;
+      padding: 0 0 64px 80px;
+    }
+    .sub-visual-eyebrow { color: rgba(255,255,255,0.4); letter-spacing: 0.22em; }
+    .sub-visual-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+    .sub-visual-desc { color: rgba(255,255,255,0.5); font-size: 16px; margin-top: 16px; }
+
+    /* ── Page ── */
+    .page-wrap { max-width: 1240px; padding: 96px 48px 160px; }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 72px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #e8e5e0;
+    }
+    .filter-btn {
+      height: 36px;
+      padding: 0 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #e8e5e0;
+      background: transparent;
+      color: #9b9b9b;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .filter-btn:hover { border-color: #0a0a0a; color: #0a0a0a; }
+    .filter-btn.active { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+
+    /* ── Featured Article ── */
+    .featured-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #e8e5e0;
+      margin-bottom: 80px;
+      min-height: 520px;
+    }
+    .featured-image {
+      background: #111 url('https://images.unsplash.com/photo-1576086213369-97a306dca664?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    .featured-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 100%);
+    }
+    .featured-content {
+      padding: 64px 60px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C8372D;
+      margin-bottom: 28px;
+    }
+    .featured-tag::before {
+      content: '';
+      width: 16px;
+      height: 1.5px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+    .featured-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+      font-weight: 600;
+      color: #0a0a0a;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .featured-desc {
+      font-size: 15px;
+      color: #6b6b6b;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 32px;
+      border-top: 1px solid #f0ede8;
+    }
+    .featured-date {
+      font-size: 12px;
+      color: #bbb;
+      letter-spacing: 0.04em;
+    }
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .btn-read:hover { gap: 12px; color: #C8372D; }
+    .btn-read svg { width: 16px; height: 16px; }
+
+    /* ── News Grid ── */
+    .news-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C8372D;
+      margin-bottom: 32px;
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .news-card {
+      border: 1px solid #e8e5e0;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+    }
+    .news-card:hover {
+      border-color: #c5c2bb;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.07);
+    }
+    .news-card-image {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      background-color: #f4f3f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .news-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .news-card:hover .news-card-image img { transform: scale(1.04); }
+    .news-card-body {
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .news-card-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+    .news-card-tag.press    { background: #fdf0ef; color: #C8372D; }
+    .news-card-tag.ir       { background: #f4f3f0; color: #4a4a4a; }
+    .news-card-tag.event    { background: #eef4f2; color: #2D8A7A; }
+    .news-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .news-card-desc {
+      font-size: 13px;
+      color: #9b9b9b;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .news-card-date {
+      font-size: 12px;
+      color: #c5c2bb;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Load More ── */
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 64px;
+    }
+    .btn-load-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 52px;
+      padding: 0 36px;
+      border: 1.5px solid #0a0a0a;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0a0a;
+      background: transparent;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-load-more:hover { background: #0a0a0a; color: #fff; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .news-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sub-visual-inner { padding: 0 0 48px 28px; }
+      .page-wrap { padding: 60px 24px 100px; }
+      .featured-wrap { grid-template-columns: 1fr; min-height: auto; }
+      .featured-image { height: 300px; }
+      .featured-content { padding: 40px 32px; }
+      .news-grid { grid-template-columns: 1fr; }
+      .filter-bar { flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
   <div id="gnb-placeholder"></div>
@@ -14,145 +278,116 @@
     <div class="sub-visual-inner">
       <p class="sub-visual-eyebrow">IR</p>
       <h1 class="sub-visual-title">Newsroom</h1>
-      <p class="sub-visual-desc">OVIA의 최신 보도자료, IR 이벤트, 주요 발표를 확인하세요.</p>
+      <p class="sub-visual-desc">최신 보도자료, 임상 소식, 투자자 이벤트를 확인하세요.</p>
     </div>
   </div>
 
-  <div class="page-wrap">
+  <div class="page-wrap container">
 
-    <!-- Featured News -->
-    <section class="page-section" data-animate>
-      <div class="news-featured">
-        <div class="nf-content">
-          <span class="tag tag--red">보도자료</span>
-          <h2 class="nf-title">OVIA, AI 신약개발 플랫폼 'OVIA-AI' 공식 론칭… 항암 파이프라인 가속화</h2>
-          <p class="nf-text">OVIA 제약은 자체 개발한 인공지능 기반 신약 후보물질 발굴 플랫폼 'OVIA-AI'를 공식 론칭했다고 밝혔다. 이 플랫폼은 딥러닝 기반 분자 구조 예측과 임상 데이터 분석을 통해 신약 개발 기간을 기존 대비 40% 단축할 수 있을 것으로 기대된다.</p>
-          <div class="nf-meta">
-            <span>2026.04.20</span>
-            <a href="#" class="nf-link">전문 보기 →</a>
+    <!-- Filter -->
+    <div class="filter-bar" data-animate>
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">보도자료</button>
+      <button class="filter-btn">IR 공지</button>
+      <button class="filter-btn">이벤트</button>
+    </div>
+
+    <!-- Featured -->
+    <section class="page-section" style="padding-block:0; margin-bottom:80px;" data-animate data-animate-delay="1">
+      <div class="featured-wrap">
+        <div class="featured-image"></div>
+        <div class="featured-content">
+          <span class="featured-tag">보도자료</span>
+          <h2 class="featured-title">OVIA, AI 신약개발 플랫폼 'OVIA-AI' 공식 론칭… 항암 파이프라인 가속화</h2>
+          <p class="featured-desc">자체 개발한 인공지능 기반 신약 후보물질 발굴 플랫폼 'OVIA-AI'를 공식 론칭했습니다. 딥러닝 기술을 통해 개발 기간을 40% 이상 단축할 것으로 기대됩니다.</p>
+          <div class="featured-meta">
+            <span class="featured-date">2026.04.20</span>
+            <a href="#" class="btn-read">
+              전문 보기
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 13L13 3M13 3H7M13 3v6"/>
+              </svg>
+            </a>
           </div>
         </div>
-        <div class="nf-image" aria-hidden="true"></div>
       </div>
     </section>
 
-    <!-- Filter + News Grid -->
-    <section class="page-section">
-      <div class="news-filter-bar">
-        <div class="news-filter-tabs" role="tablist">
-          <button class="nft-btn active" data-filter="all">전체</button>
-          <button class="nft-btn" data-filter="press">보도자료</button>
-          <button class="nft-btn" data-filter="ir">IR 공지</button>
-          <button class="nft-btn" data-filter="event">IR 이벤트</button>
-        </div>
-        <div class="news-search">
-          <input type="search" placeholder="검색어를 입력하세요" class="form-input" style="height:40px; width:240px;" aria-label="뉴스 검색" />
-        </div>
+    <!-- News Grid -->
+    <section class="page-section" style="padding-block:0;" data-animate data-animate-delay="2">
+      <p class="news-section-label">Recent News</p>
+      <div class="news-grid">
+
+        <a href="#" class="news-card">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=600&q=80" alt="1Q 실적 발표" loading="lazy">
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-tag ir">IR 공지</span>
+            <h3 class="news-card-title">2026년 1분기 실적 발표 일정 안내</h3>
+            <p class="news-card-desc">5월 15일 오후 2시 온라인 컨퍼런스 콜이 진행됩니다.</p>
+            <time class="news-card-date">2026.04.15</time>
+          </div>
+        </a>
+
+        <a href="#" class="news-card">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1532187875605-1ef6c237ddc4?auto=format&fit=crop&w=600&q=80" alt="임상 결과 발표" loading="lazy">
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-tag press">보도자료</span>
+            <h3 class="news-card-title">OV-501, 파브리병 임상 3상 중간 결과 발표</h3>
+            <p class="news-card-desc">1차 평가변수 달성 및 긍정적인 치료 효과 확인</p>
+            <time class="news-card-date">2026.04.08</time>
+          </div>
+        </a>
+
+        <a href="#" class="news-card">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=600&q=80" alt="IR Day" loading="lazy">
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-tag event">이벤트</span>
+            <h3 class="news-card-title">2026 OVIA IR Day 현장 스케치</h3>
+            <p class="news-card-desc">글로벌 기관 투자자 대상 비전 공유의 장</p>
+            <time class="news-card-date">2026.03.28</time>
+          </div>
+        </a>
+
       </div>
 
-      <div class="news-grid" id="news-grid">
-
-        <article class="news-card-item" data-category="press" data-animate>
-          <div class="nci-thumb" style="background:#f0e8e8;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--red">보도자료</span>
-              <time class="nci-date">2026.04.20</time>
-            </div>
-            <h3 class="nci-title">OVIA, AI 신약개발 플랫폼 'OVIA-AI' 공식 론칭</h3>
-            <p class="nci-text">항암 파이프라인 가속화 및 신약 개발 기간 40% 단축 기대</p>
-          </div>
-        </article>
-
-        <article class="news-card-item" data-category="ir" data-animate>
-          <div class="nci-thumb" style="background:#e8f0f4;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--teal">IR 공지</span>
-              <time class="nci-date">2026.04.15</time>
-            </div>
-            <h3 class="nci-title">2026년 1분기 실적 발표 일정 안내</h3>
-            <p class="nci-text">2026년 5월 15일 오후 2시, 온라인 컨퍼런스콜 예정</p>
-          </div>
-        </article>
-
-        <article class="news-card-item" data-category="press" data-animate>
-          <div class="nci-thumb" style="background:#e8f4f0;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--red">보도자료</span>
-              <time class="nci-date">2026.04.08</time>
-            </div>
-            <h3 class="nci-title">OV-501, 파브리병 Phase III 중간 분석 긍정적 결과 발표</h3>
-            <p class="nci-text">1차 평가변수 달성, 허가 신청 일정 앞당길 계획</p>
-          </div>
-        </article>
-
-        <article class="news-card-item" data-category="event" data-animate>
-          <div class="nci-thumb" style="background:#f4f0e8;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--gray">IR 이벤트</span>
-              <time class="nci-date">2026.03.28</time>
-            </div>
-            <h3 class="nci-title">2026 OVIA IR Day — 글로벌 파이프라인 전략 발표</h3>
-            <p class="nci-text">서울 코엑스 인터컨티넨탈 호텔, 기관투자자 대상</p>
-          </div>
-        </article>
-
-        <article class="news-card-item" data-category="press" data-animate>
-          <div class="nci-thumb" style="background:#f0e8f4;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--red">보도자료</span>
-              <time class="nci-date">2026.03.15</time>
-            </div>
-            <h3 class="nci-title">OVIA, 미국 보스턴 글로벌 R&D 센터 1주년 성과 발표</h3>
-            <p class="nci-text">신규 파이프라인 5건 발굴, 글로벌 파트너십 2건 체결</p>
-          </div>
-        </article>
-
-        <article class="news-card-item" data-category="ir" data-animate>
-          <div class="nci-thumb" style="background:#e8ece8;"></div>
-          <div class="nci-body">
-            <div class="nci-meta">
-              <span class="tag tag--teal">IR 공지</span>
-              <time class="nci-date">2026.03.05</time>
-            </div>
-            <h3 class="nci-title">2025년 연간 실적 발표 — 매출 1조 2,340억 달성</h3>
-            <p class="nci-text">전년 대비 13.3% 성장, R&D 투자 2,100억으로 확대</p>
-          </div>
-        </article>
-
-      </div><!-- /#news-grid -->
-
-      <!-- Load More -->
-      <div class="news-load-more">
-        <button class="btn-outline">더 보기</button>
+      <div class="load-more-wrap">
+        <button class="btn-load-more">
+          더 보기
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M7 2v10M2 7l5 5 5-5"/>
+          </svg>
+        </button>
       </div>
     </section>
 
-  </div><!-- /.page-wrap -->
-
-
-  <script>
-    document.querySelectorAll('.nft-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.nft-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.news-card-item').forEach(card => {
-          card.toggleAttribute('data-hidden', filter !== 'all' && card.dataset.category !== filter);
-        });
-      });
-    });
-  </script>
+  </div>
 
   <div id="footer-placeholder"></div>
 
   <script src="../assets/js/gnb.js"></script>
-  <script src="../assets/js/header.js"></script>`n  <script src="../assets/js/submenu.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/submenu.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/footer.js"></script>
+  <script>
+    /* Filter interaction */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    /* Scroll animation */
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

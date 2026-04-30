@@ -802,6 +802,106 @@ body {
   border: none;
   margin: 0;
 }
+
+/* ════════════════════════════════════════
+   APPLE STYLE UTILITIES
+   ════════════════════════════════════════ */
+
+.glass {
+  background: var(--apple-glass-bg);
+  backdrop-filter: var(--apple-blur);
+  -webkit-backdrop-filter: var(--apple-blur);
+  border: 1px solid var(--apple-glass-border);
+}
+
+.apple-card {
+  background: var(--color-surface);
+  border-radius: var(--shape-xl);
+  padding: var(--space-12);
+  box-shadow: var(--apple-shadow);
+  border: 1px solid var(--color-outline-variant);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.apple-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* Sub-visual enhancements */
+.sub-visual {
+  height: 60vh;
+  min-height: 400px;
+  background: var(--color-inverse-surface);
+  color: var(--color-on-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sub-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
+}
+
+.sub-visual-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--space-8);
+}
+
+.sub-visual-eyebrow {
+  font-size: var(--type-label-lg);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary-container);
+  animation: fadeInUp 0.8s var(--motion-emphasized);
+}
+
+.sub-visual-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 80px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.03em;
+  animation: fadeInUp 0.8s var(--motion-emphasized) 0.1s both;
+}
+
+.sub-visual-desc {
+  font-size: var(--type-body-lg);
+  line-height: 1.6;
+  opacity: 0.8;
+  word-break: keep-all;
+  animation: fadeInUp 0.8s var(--motion-emphasized) 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Page Section Spacing */
+.page-section {
+  padding-block: var(--space-30);
+}
+
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-12);
+}
 .divider--inset { margin-inline-start: var(--space-16); }
 
 /* ════════════════════════════════════════

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,257 @@
   <title>IR Overview — OVIA Pharmaceuticals</title>
   <link rel="stylesheet" href="../assets/css/common.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* ── Sub Visual Override ── */
+    .sub-visual {
+      height: 72vh;
+      min-height: 520px;
+      background: #0a0a0a url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+    }
+    .sub-visual::after {
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%);
+    }
+    .sub-visual-inner {
+      text-align: left;
+      padding: 0 0 72px 80px;
+      max-width: 720px;
+    }
+    .sub-visual-eyebrow {
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.22em;
+    }
+    .sub-visual-title {
+      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .sub-visual-desc {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      max-width: 460px;
+    }
+
+    /* ── Page Layout ── */
+    .page-wrap {
+      max-width: 1240px;
+      padding: 96px 48px 160px;
+    }
+
+    /* ── Ticker Block ── */
+    .ticker-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #e8e5e0;
+      border-radius: 28px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .ticker-main {
+      background: #0a0a0a;
+      padding: 72px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ticker-exchange {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 32px;
+    }
+    .ticker-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .ticker-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #5cc878;
+    }
+    .ticker-change-pill {
+      background: rgba(92,200,120,0.15);
+      color: #5cc878;
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .ticker-date {
+      margin-top: 32px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Metrics Panels ── */
+    .ticker-metrics {
+      background: #f8f7f4;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+    .metric-cell {
+      padding: 40px 44px;
+      border-right: 1px solid #e8e5e0;
+      border-bottom: 1px solid #e8e5e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: background 0.2s;
+    }
+    .metric-cell:nth-child(even) { border-right: none; }
+    .metric-cell:nth-child(3),
+    .metric-cell:nth-child(4) { border-bottom: none; }
+    .metric-cell:hover { background: #f0ede8; }
+    .metric-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9b9b9b;
+      margin-bottom: 10px;
+    }
+    .metric-value {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* ── Chart Placeholder ── */
+    .chart-strip {
+      background: #f8f7f4;
+      border-radius: 20px;
+      height: 160px;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px 32px;
+      gap: 3px;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .chart-bar {
+      flex: 1;
+      background: #e0ddd8;
+      border-radius: 3px 3px 0 0;
+      transition: background 0.15s;
+      min-width: 0;
+    }
+    .chart-bar:hover { background: #C8372D; }
+    .chart-bar.high { background: #0a0a0a; }
+
+    /* ── Resources Section ── */
+    .resources-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C8372D;
+      margin-bottom: 24px;
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .resource-card {
+      position: relative;
+      border: 1px solid #e8e5e0;
+      border-radius: 24px;
+      padding: 52px 48px;
+      background: #fff;
+      text-decoration: none;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .resource-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0a0a0a;
+      opacity: 0;
+      border-radius: inherit;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .resource-card:hover { border-color: #0a0a0a; transform: translateY(-4px); }
+    .resource-card:hover::after { opacity: 0.02; }
+
+    .resource-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #f4f3f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .resource-icon svg { width: 22px; height: 22px; color: #0a0a0a; }
+    .resource-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    .resource-desc {
+      font-size: 14px;
+      color: #9b9b9b;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .resource-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #C8372D;
+      letter-spacing: 0.01em;
+    }
+    .resource-link svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .resource-card:hover .resource-link svg { transform: translate(3px, -3px); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .sub-visual-inner { padding: 0 0 60px 48px; }
+      .ticker-block { grid-template-columns: 1fr; }
+      .ticker-metrics { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }
+      .metric-cell:nth-child(3),
+      .metric-cell:nth-child(4) { border-bottom: 1px solid #e8e5e0; }
+      .metric-cell:nth-child(4) { border-right: none; }
+    }
+    @media (max-width: 768px) {
+      .sub-visual-inner { padding: 0 0 48px 28px; }
+      .page-wrap { padding: 60px 24px 100px; }
+      .ticker-main { padding: 48px 36px; }
+      .ticker-metrics { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <div id="gnb-placeholder"></div>
@@ -13,173 +264,128 @@
   <div class="sub-visual">
     <div class="sub-visual-inner">
       <p class="sub-visual-eyebrow">IR</p>
-      <h1 class="sub-visual-title">IR Overview</h1>
-      <p class="sub-visual-desc">OVIA의 재무 현황과 투자자 정보를 투명하게 공개합니다.</p>
+      <h1 class="sub-visual-title">Investor<br>Relations</h1>
+      <p class="sub-visual-desc">투명한 경영과 지속 가능한 성장.<br>OVIA의 재무 현황을 실시간으로 확인하세요.</p>
     </div>
   </div>
 
-  <div class="page-wrap">
+  <div class="page-wrap container">
 
-    <!-- Stock Info -->
-    <section class="page-section" data-animate>
-      <p class="sec-label">Stock Information</p>
-      <h2 class="sec-title">주가 정보</h2>
-      <div class="sec-divider"></div>
-      <div class="stock-board">
-        <div class="stock-main">
-          <div class="stock-price-wrap">
-            <span class="stock-label">OVIA (KRX: 123456)</span>
-            <span class="stock-price">₩ 48,500</span>
-            <span class="stock-change up">▲ 1,200 (+2.54%)</span>
-            <span class="stock-date">2026.04.25 기준 (장 마감)</span>
+    <!-- Ticker -->
+    <section class="page-section" style="margin-bottom:24px;" data-animate>
+      <div class="ticker-block">
+        <div class="ticker-main">
+          <p class="ticker-exchange">KRX · 123456 · OVIA</p>
+          <p class="ticker-price">₩ 48,500</p>
+          <div>
+            <span class="ticker-change">
+              ▲ ₩1,200
+              <span class="ticker-change-pill">+2.54%</span>
+            </span>
           </div>
+          <p class="ticker-date">2026.04.25 기준 · 장 마감</p>
         </div>
-        <div class="stock-metrics">
-          <div class="sm-item">
-            <span class="sm-label">시가총액</span>
-            <span class="sm-value">2조 4,250억</span>
+        <div class="ticker-metrics">
+          <div class="metric-cell">
+            <p class="metric-label">시가총액</p>
+            <p class="metric-value">2.4조</p>
           </div>
-          <div class="sm-item">
-            <span class="sm-label">52주 최고</span>
-            <span class="sm-value">₩ 56,200</span>
+          <div class="metric-cell">
+            <p class="metric-label">52주 최고</p>
+            <p class="metric-value">56,200</p>
           </div>
-          <div class="sm-item">
-            <span class="sm-label">52주 최저</span>
-            <span class="sm-value">₩ 38,100</span>
+          <div class="metric-cell">
+            <p class="metric-label">PER</p>
+            <p class="metric-value">24.3x</p>
           </div>
-          <div class="sm-item">
-            <span class="sm-label">PER</span>
-            <span class="sm-value">24.3x</span>
-          </div>
-          <div class="sm-item">
-            <span class="sm-label">배당수익률</span>
-            <span class="sm-value">1.2%</span>
-          </div>
-          <div class="sm-item">
-            <span class="sm-label">거래량</span>
-            <span class="sm-value">1,234,567</span>
-          </div>
-        </div>
-      </div>
-      <p class="stock-disclaimer">※ 본 주가 정보는 실제 데이터가 아닌 예시입니다. 실제 구현 시 KRX API 또는 금융 데이터 제공사와 연동하세요.</p>
-    </section>
-
-    <!-- Financial Highlights -->
-    <section class="page-section" data-animate>
-      <p class="sec-label">Financials</p>
-      <h2 class="sec-title">재무 하이라이트</h2>
-      <div class="sec-divider"></div>
-      <div class="fin-grid">
-        <div class="fin-item">
-          <span class="fin-year">2025</span>
-          <div class="fin-bars">
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">매출액</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill" style="--pct:85%"></div></div>
-              <span class="fin-bar-val">1조 2,340억</span>
-            </div>
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">영업이익</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill fin-bar-fill--teal" style="--pct:62%"></div></div>
-              <span class="fin-bar-val">1,876억</span>
-            </div>
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">R&D 투자</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill fin-bar-fill--dark" style="--pct:40%"></div></div>
-              <span class="fin-bar-val">2,100억</span>
-            </div>
-          </div>
-        </div>
-        <div class="fin-item">
-          <span class="fin-year">2024</span>
-          <div class="fin-bars">
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">매출액</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill" style="--pct:75%"></div></div>
-              <span class="fin-bar-val">1조 890억</span>
-            </div>
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">영업이익</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill fin-bar-fill--teal" style="--pct:54%"></div></div>
-              <span class="fin-bar-val">1,620억</span>
-            </div>
-            <div class="fin-bar-item">
-              <span class="fin-bar-label">R&D 투자</span>
-              <div class="fin-bar-track"><div class="fin-bar-fill fin-bar-fill--dark" style="--pct:35%"></div></div>
-              <span class="fin-bar-val">1,850억</span>
-            </div>
+          <div class="metric-cell">
+            <p class="metric-label">배당수익률</p>
+            <p class="metric-value">1.2%</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quick Links -->
-    <section class="page-section" data-animate>
-      <p class="sec-label">IR Resources</p>
-      <h2 class="sec-title">IR 자료</h2>
-      <div class="sec-divider"></div>
-      <div class="ir-links">
-        <a href="disclosures.html" class="ir-link-item">
-          <div class="ir-link-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="ir-link-title">공시 정보</h3>
-            <p class="ir-link-desc">사업보고서, 분기보고서, 주요 공시</p>
-          </div>
-          <svg class="ir-link-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="newsroom.html" class="ir-link-item">
-          <div class="ir-link-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="ir-link-title">뉴스룸</h3>
-            <p class="ir-link-desc">보도자료, IR 이벤트, 주요 발표</p>
-          </div>
-          <svg class="ir-link-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="mailto:ir@ovia.com" class="ir-link-item">
-          <div class="ir-link-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="ir-link-title">IR 문의</h3>
-            <p class="ir-link-desc">ir@ovia.com</p>
-          </div>
-          <svg class="ir-link-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <!-- Mini Chart -->
+    <section class="page-section" style="margin-bottom:80px; padding-block:0;" data-animate data-animate-delay="1">
+      <div class="chart-strip">
+        <div class="chart-bar" style="height:42%"></div>
+        <div class="chart-bar" style="height:55%"></div>
+        <div class="chart-bar" style="height:48%"></div>
+        <div class="chart-bar" style="height:62%"></div>
+        <div class="chart-bar" style="height:58%"></div>
+        <div class="chart-bar" style="height:50%"></div>
+        <div class="chart-bar" style="height:72%"></div>
+        <div class="chart-bar" style="height:68%"></div>
+        <div class="chart-bar" style="height:64%"></div>
+        <div class="chart-bar" style="height:78%"></div>
+        <div class="chart-bar" style="height:74%"></div>
+        <div class="chart-bar" style="height:82%"></div>
+        <div class="chart-bar" style="height:70%"></div>
+        <div class="chart-bar" style="height:88%"></div>
+        <div class="chart-bar" style="height:84%"></div>
+        <div class="chart-bar" style="height:92%"></div>
+        <div class="chart-bar" style="height:76%"></div>
+        <div class="chart-bar high" style="height:100%"></div>
+        <div class="chart-bar" style="height:94%"></div>
+        <div class="chart-bar" style="height:86%"></div>
+        <div class="chart-bar" style="height:90%"></div>
+        <div class="chart-bar" style="height:82%"></div>
+        <div class="chart-bar" style="height:96%"></div>
+        <div class="chart-bar" style="height:88%"></div>
       </div>
     </section>
 
-  </div><!-- /.page-wrap -->
-
-
-  <script>
-    // Animate fin bars on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.fin-bar-fill').forEach(bar => {
-            bar.style.width = bar.style.getPropertyValue('--pct') || bar.getAttribute('style').match(/--pct:([\d%]+)/)?.[1] || '0%';
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.fin-item').forEach(el => observer.observe(el));
-  </script>
+    <!-- Resources -->
+    <section class="page-section" data-animate data-animate-delay="2">
+      <p class="resources-label">Resources</p>
+      <div class="resources-grid">
+        <a href="disclosures.html" class="resource-card">
+          <div class="resource-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12h6M9 16h6M7 4h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+            </svg>
+          </div>
+          <p class="resource-title">공시<br>정보</p>
+          <p class="resource-desc">사업보고서 및 주요 경영 공시 자료를 실시간으로 확인하세요.</p>
+          <span class="resource-link">
+            View Reports
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12L12 2M12 2H6M12 2v6"/>
+            </svg>
+          </span>
+        </a>
+        <a href="newsroom.html" class="resource-card">
+          <div class="resource-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <p class="resource-title">뉴스룸</p>
+          <p class="resource-desc">최신 보도자료, IR 이벤트, 주요 발표를 가장 먼저 만나보세요.</p>
+          <span class="resource-link">
+            View News
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12L12 2M12 2H6M12 2v6"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <div id="footer-placeholder"></div>
 
   <script src="../assets/js/gnb.js"></script>
-  <script src="../assets/js/header.js"></script>`n  <script src="../assets/js/submenu.js"></script>
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/submenu.js"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/footer.js"></script>
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

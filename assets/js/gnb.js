@@ -32,9 +32,8 @@
       id: 'business',
       label: 'BUSINESS',
       items: [
-        { ko: '제품 정보',    en: 'Our Products',   href: 'business/products.html' },
-        { ko: '판매약국찾기', en: 'Find a Pharmacy', href: 'business/pharmacy.html' },
-        { ko: 'CMO',          en: 'CMO Services',   href: 'business/cmo.html' },
+        { ko: '제품 정보', en: 'Our Products', href: 'business/products.html' },
+        { ko: 'CMO',        en: 'CMO Services', href: 'business/cmo.html' },
       ],
     },
     {

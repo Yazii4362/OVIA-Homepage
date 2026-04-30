@@ -150,22 +150,27 @@ body {
 /* ─── Logo Versions ─── */
 .logo-versions {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
 }
-.logo-version-item { display: flex; flex-direction: column; }
+.logo-version-item { 
+  display: flex; 
+  flex-direction: column; 
+}
 .logo-version-preview {
-  height: 200px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ci-border);
-  margin-bottom: 16px;
+  border-radius: var(--shape-xl);
+  margin-bottom: var(--space-6);
+  background: var(--color-surface);
+  box-shadow: var(--apple-shadow);
 }
 .logo-preview--light { background: #fff; }
-.logo-preview--dark  { background: var(--ci-dark); }
-.logo-preview--brand { background: var(--ci-red); }
+.logo-preview--dark  { background: var(--color-inverse-surface); }
+.logo-preview--brand { background: var(--color-primary); }
 .logo-version-info strong {
   display: block;
   font-size: 14px;
